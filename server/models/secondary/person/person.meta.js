@@ -3,10 +3,12 @@ module.exports = {
   columns: [{
       columnName: 'id',
       type: 'integer',
-      dataType: 'integer',
+      dataType: 'int',
       notNull: true,
+      unsigned: true,
       primaryKey: true,
       autoIncrement: true,
+      data_type_x_precision: "11",
       validate: {
         func: [],
         args: [],
@@ -15,8 +17,33 @@ module.exports = {
     },
     {
       columnName: 'name',
-      type: 'text',
-      dataType: 'text',
+      type: 'string',
+      dataType: 'varchar',
+      data_type_x_precision: "45",
+      validate: {
+        func: [],
+        args: [],
+        msg: []
+      },
+    },
+    {
+      columnName: 'created_at',
+      type: 'timestamp',
+      dataType: 'timestamp',
+      default: "CURRENT_TIMESTAMP",
+      columnDefault: "CURRENT_TIMESTAMP",
+      validate: {
+        func: [],
+        args: [],
+        msg: []
+      },
+    },
+    {
+      columnName: 'updated_at',
+      type: 'timestamp',
+      dataType: 'timestamp',
+      default: "CURRENT_TIMESTAMPT_TIMESTAMP",
+      columnDefault: "CURRENT_TIMESTAMPT_TIMESTAMP",
       validate: {
         func: [],
         args: [],
@@ -25,17 +52,7 @@ module.exports = {
     },
   ],
   pks: [],
-  hasMany: [{
-    "onUpdate": "NO ACTION",
-    "onDelete": "NO ACTION",
-    "tableName": "comments",
-    "columnName": "person_id",
-    "referencedTableName": "person",
-    "referencedColumnName": "id",
-    "updateRule": "NO ACTION",
-    "deleteRule": "NO ACTION",
-    "matchOption": "NONE"
-  }],
+  hasMany: [],
   belongsTo: [],
-  dbType: 'sqlite3'
+  dbType: 'mysql'
 }

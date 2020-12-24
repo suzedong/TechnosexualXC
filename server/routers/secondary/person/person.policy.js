@@ -103,64 +103,6 @@ module.exports.permissions = {
 
   /* Has many routes and permissions */
 
-  '/api/w1/person/has/comments': {
-    get: {
-      admin: true,
-      user: true,
-      guest: true
-    }
-  },
-  '/api/w1/person/:parentId/comments': {
-    get: {
-      admin: true,
-      user: true,
-      guest: true
-    },
-    post: {
-      admin: true,
-      user: true,
-      guest: true
-    }
-  },
-  '/api/w1/person/:parentId/comments/findOne': {
-    get: {
-      admin: true,
-      user: true,
-      guest: true
-    }
-  },
-  '/api/w1/person/:parentId/comments/count': {
-    get: {
-      admin: true,
-      user: true,
-      guest: true
-    }
-  },
-  '/api/w1/person/:parentId/comments/:id': {
-    get: {
-      admin: true,
-      user: true,
-      guest: true
-    },
-    put: {
-      admin: true,
-      user: true,
-      guest: true
-    },
-    delete: {
-      admin: true,
-      user: true,
-      guest: true
-    }
-  },
-  '/api/w1/person/:parentId/comments/:id/exists': {
-    get: {
-      admin: true,
-      user: true,
-      guest: true
-    }
-  },
-
 
   /* Belongs to routes and permissions */
 

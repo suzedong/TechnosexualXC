@@ -680,7 +680,7 @@
           "nullable": false,
           "readOnly": true
         },
-        "title": {
+        "name": {
           "type": "string"
         },
         "created_at": {
@@ -688,6 +688,9 @@
         },
         "updated_at": {
           "type": "string"
+        },
+        "user_id": {
+          "type": "integer"
         }
       }
     }
