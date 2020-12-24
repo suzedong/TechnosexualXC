@@ -1,0 +1,451 @@
+{
+  "tags": [{
+    "name": "personHasManycomments",
+    "description": "Everything about has many relation"
+  }],
+  "paths": {
+    "/api/v1/person/has/comments": {
+      "get": {
+        "tags": [
+          "personHasManycomments"
+        ],
+        "summary": "Get person list with comments children",
+        "description": "",
+        "operationId": "personHasManycommentsList",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [{
+            "in": "query",
+            "name": "fields",
+            "type": "String",
+            "description": "Comma seperated fields of model"
+          },
+          {
+            "in": "query",
+            "name": "where",
+            "type": "String",
+            "description": "Where expression"
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "description": "page size limit",
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "in": "query",
+            "name": "offset",
+            "description": "pagination offset",
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "in": "query",
+            "name": "sort",
+            "description": "sort parameter",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "object"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/person/{personId}/comments": {
+      "get": {
+        "tags": [
+          "personHasManycomments"
+        ],
+        "summary": "Find comments list by parent person id",
+        "description": "Returns a single person",
+        "operationId": "getcommentsBypersonId",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [{
+            "name": "personId",
+            "in": "path",
+            "description": "ID of person to return",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "in": "query",
+            "name": "fields",
+            "type": "String",
+            "description": "Comma seperated fields of model"
+          },
+          {
+            "in": "query",
+            "name": "where",
+            "type": "String",
+            "description": "Where expression"
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "description": "page size limit",
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "in": "query",
+            "name": "offset",
+            "description": "pagination offset",
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "in": "query",
+            "name": "sort",
+            "description": "sort parameter",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": "object"
+            }
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "person not found"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "personHasManycomments"
+        ],
+        "summary": "Insert comments under a parent person",
+        "description": "Returns a single person",
+        "operationId": "insertcommentsBypersonId",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [{
+            "in": "body",
+            "name": "body",
+            "description": "comments object to insert",
+            "required": true,
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "personId",
+            "in": "path",
+            "description": "ID of person to return",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/person/{personId}/comments/{commentsId}": {
+      "get": {
+        "tags": [
+          "personHasManycomments"
+        ],
+        "summary": "Get by comments id parent person id",
+        "description": "Returns a single person",
+        "operationId": "getcommentsByIdAndpersonId",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [{
+            "name": "personId",
+            "in": "path",
+            "description": "ID of parent person",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "commentsId",
+            "in": "path",
+            "description": "ID of comments",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": "object"
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "personHasManycomments"
+        ],
+        "summary": "Delete by comments id parent person id",
+        "description": "Returns a single person",
+        "operationId": "deletecommentsByIdAndpersonId",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [{
+            "name": "personId",
+            "in": "path",
+            "description": "ID of parent person",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "commentsId",
+            "in": "path",
+            "description": "ID of ccomments",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "personHasManycomments"
+        ],
+        "summary": "Update comments under a parent person",
+        "description": "Returns a single person",
+        "operationId": "updatecommentsByIdAndpersonId",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [{
+            "in": "body",
+            "name": "body",
+            "description": "comments object to insert",
+            "required": true,
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "personId",
+            "in": "path",
+            "description": "ID of person to return",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "commentsId",
+            "in": "path",
+            "description": "ID of comments",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/person/{personId}/comments/{commentsId}/exists": {
+      "get": {
+        "tags": [
+          "personHasManycomments"
+        ],
+        "summary": "Check row exists by comments id and parent person id",
+        "description": "",
+        "operationId": "existscommentsByIdAndpersonId",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [{
+            "name": "personId",
+            "in": "path",
+            "description": "ID of parent person",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "commentsId",
+            "in": "path",
+            "description": "ID of comments",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/person/{personId}/comments/findOne": {
+      "get": {
+        "tags": [
+          "personHasManycomments"
+        ],
+        "summary": "Find one comments by parent person id and filters",
+        "description": "",
+        "operationId": "findOnecommentsBypersonId",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [{
+            "name": "personId",
+            "in": "path",
+            "description": "ID of parent person",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "in": "query",
+            "name": "fields",
+            "type": "String",
+            "description": "Comma seperated fields of model"
+          },
+          {
+            "in": "query",
+            "name": "where",
+            "type": "String",
+            "description": "Where expression"
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "description": "page size limit",
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "in": "query",
+            "name": "offset",
+            "description": "pagination offset",
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "in": "query",
+            "name": "sort",
+            "description": "sort parameter",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/person/{personId}/comments/count": {
+      "get": {
+        "tags": [
+          "personHasManycomments"
+        ],
+        "summary": "Get comments count by parent id and filter",
+        "description": "",
+        "operationId": "getCountWithinpersonId",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [{
+            "name": "personId",
+            "in": "path",
+            "description": "ID of parent person",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "in": "query",
+            "name": "where",
+            "type": "String",
+            "description": "Where expression"
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "description": "page size limit",
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "in": "query",
+            "name": "offset",
+            "description": "pagination offset",
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "in": "query",
+            "name": "sort",
+            "description": "sort parameter",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {}
+}
