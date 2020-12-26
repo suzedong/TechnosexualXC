@@ -60,6 +60,28 @@ module.exports = {
         msg: []
       },
     },
+    {
+      columnName: 'openid',
+      type: 'string',
+      dataType: 'varchar',
+      data_type_x_precision: "45",
+      validate: {
+        func: [],
+        args: [],
+        msg: []
+      },
+    },
+    {
+      columnName: 'session_key',
+      type: 'string',
+      dataType: 'varchar',
+      data_type_x_precision: "45",
+      validate: {
+        func: [],
+        args: [],
+        msg: []
+      },
+    },
   ],
   pks: [],
   hasMany: [{

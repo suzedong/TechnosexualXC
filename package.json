@@ -46,6 +46,7 @@
   "dependencies": {
     "@webserverless/fc-express": "latest",
     "aws-serverless-express": "^3.3.8",
+    "axios": "^0.21.1",
     "azure-function-express": "^2.0.0",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
