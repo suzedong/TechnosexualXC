@@ -78,6 +78,7 @@ mongod
 !/v
 
 config.xc.json
+package-lock.json
 docs
 
 .serverless
