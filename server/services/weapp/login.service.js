@@ -3,6 +3,7 @@ const {
 } = require('xc-core');
 const axios = require('axios')
 const {Biz} = require('./config')
+const WXBizDataCrypt = require('./WXBizDataCrypt')
 
 class LoginService extends BaseService {
 
@@ -33,9 +34,11 @@ class LoginService extends BaseService {
         //      "errmsg": "invalid code, hints: [ req_id: QGMFL14ce-ZvS ]"
         // }
         console.log(data)
+        let person = {}
         if (data.openid) {
             req.query.where = '(openid,eq,' + data.openid + ')'
-            let person = await this.person.findOne(req.query);
+            req.query.fields = ['id','name','mobile_phone']
+            person = await this.person.findOne(req.query);
             console.log('findOne:', person)
             if (!person.id) {
                 const newPerson = {openid: data.openid, session_key: data.session_key}
@@ -51,7 +54,21 @@ class LoginService extends BaseService {
                 data.person = person
             }
         }
-        return data || {}
+        return {person:person} || {}
+    }
+
+    async getUserInfo(req, res) {
+        // console.log(req.body)
+        const appId = Biz.WXAppId
+        let sessionKey = req.body.session_key
+        const encryptedData = req.body.encryptedData
+        const iv = req.body.iv
+
+        const pc = new WXBizDataCrypt(appId, sessionKey)
+        const data = pc.decryptData(encryptedData, iv)
+        delete data.watermark
+        console.log('解密后 data: ', data)
+        return data
     }
 
 }

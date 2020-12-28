@@ -82,6 +82,105 @@ module.exports = {
         msg: []
       },
     },
+    {
+      columnName: 'mobile_phone',
+      type: 'string',
+      dataType: 'varchar',
+      data_type_x_precision: "45",
+      validate: {
+        func: [],
+        args: [],
+        msg: []
+      },
+    },
+    {
+      columnName: 'avatarUrl',
+      type: 'text',
+      dataType: 'text',
+      data_type_x_precision: "65535",
+      validate: {
+        func: [],
+        args: [],
+        msg: []
+      },
+    },
+    {
+      columnName: 'city',
+      type: 'string',
+      dataType: 'varchar',
+      data_type_x_precision: "45",
+      validate: {
+        func: [],
+        args: [],
+        msg: []
+      },
+    },
+    {
+      columnName: 'country',
+      type: 'string',
+      dataType: 'varchar',
+      data_type_x_precision: "45",
+      validate: {
+        func: [],
+        args: [],
+        msg: []
+      },
+    },
+    {
+      columnName: 'gender',
+      type: 'integer',
+      dataType: 'int',
+      data_type_x_precision: "11",
+      validate: {
+        func: [],
+        args: [],
+        msg: []
+      },
+    },
+    {
+      columnName: 'language',
+      type: 'string',
+      dataType: 'varchar',
+      data_type_x_precision: "45",
+      validate: {
+        func: [],
+        args: [],
+        msg: []
+      },
+    },
+    {
+      columnName: 'nickName',
+      type: 'string',
+      dataType: 'varchar',
+      data_type_x_precision: "45",
+      validate: {
+        func: [],
+        args: [],
+        msg: []
+      },
+    },
+    {
+      columnName: 'province',
+      type: 'string',
+      dataType: 'varchar',
+      data_type_x_precision: "45",
+      validate: {
+        func: [],
+        args: [],
+        msg: []
+      },
+    },
+    {
+      columnName: 'unionId',
+      type: 'string',
+      dataType: 'varchar',
+      data_type_x_precision: "45",
+      validate: {
+        func: [],
+        args: [],
+        msg: []
+      },
+    },
   ],
   pks: [],
   hasMany: [{

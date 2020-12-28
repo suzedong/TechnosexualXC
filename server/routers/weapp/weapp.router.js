@@ -14,8 +14,15 @@ class WeappRouter extends BaseRouter {
     res.json(data)
   }
 
+  async getUserInfo(req, res) {
+    // console.log(req, res)
+    let data = await this.LoginService.getUserInfo(req, res);
+    res.json(data)
+  }
+
   _mapRoutes(router) {
     router.get('/weapp/login', this.catchErr(this.login));
+    router.post('/weapp/getUserInfo', this.catchErr(this.getUserInfo));
   }
 
 }
