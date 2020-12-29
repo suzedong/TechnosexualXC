@@ -7,6 +7,9 @@ on:
   # 在push或pull请求事件时触发工作流，但只针对主分支
   push:
     branches: [ master ]
+    paths-ignore: # 下列文件的变更不触发部署，可以自行添加
+      - README.md
+      - LICENSE
   pull_request:
     branches: [ master ]
 
@@ -42,10 +45,21 @@ jobs:
         run: npm install
 
       - name: Test # 第三步，测试程序
-        run: npm run test:travis
+        run: npm run test
 
       # 使用运行程序shell运行一组命令
       - name: Run a multi-line script
         run: |
           echo Add other actions to build,
           echo test, and deploy your project.
+
+      - name: Deploy to Server # 第四步，rsync推送文件
+        uses: AEnterprise/rsync-deploy@v1.0  # 使用别人包装好的步骤镜像
+        env:
+          DEPLOY_KEY: ${{ secrets.DEPLOY_KEY }}   # 引用配置，SSH私钥
+          ARGS: -avz --delete --exclude='*.pyc'   # rsync参数，排除.pyc文件
+          SERVER_PORT: '22'  # SSH端口
+          FOLDER: ./*  # 要推送的文件夹，路径相对于代码仓库的根目录
+          SERVER_IP: ${{ secrets.SSH_HOST }}  # 引用配置，服务器的host名（IP或者域名domain.com）
+          USERNAME: ${{ secrets.SSH_USERNAME }}  # 引用配置，服务器登录名
+          SERVER_DESTINATION: /opt/TechnosexualXC/   # 部署到目标文件夹
