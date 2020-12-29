@@ -32,17 +32,17 @@ jobs:
       # 使用运行器shell运行单个命令
       - name: Run a one-line script
         run: echo Hello, world!
-        
-      - name: Use Node.js ${{ matrix.node-version }} 
+
+      - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }} #规定node.js版本(可不配置)
 
-      - name: Install dependencies  # 第二步，安装依赖
-          run: npm install
+      - name: Install dependencies # 第二步，安装依赖
+        run: npm install
 
-      - name: Test              # 第三步，测试程序
-          run: npm run test:travis
+      - name: Test # 第三步，测试程序
+        run: npm run test:travis
 
       # 使用运行程序shell运行一组命令
       - name: Run a multi-line script
