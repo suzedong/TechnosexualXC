@@ -25,7 +25,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [ 8.x, 10.x, 12.x ]
+        node-version: [ 12.x ]
 
     # 步骤表示将作为作业的一部分执行的任务序列
     steps:
@@ -45,7 +45,7 @@ jobs:
         run: npm install
 
       - name: Test # 第三步，测试程序
-        run: npm run test
+        run: npm run test:travis
 
       # 使用运行程序shell运行一组命令
       - name: Run a multi-line script
