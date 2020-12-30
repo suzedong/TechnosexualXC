@@ -1,7 +1,7 @@
 module.exports.permissions = {
 
   /* Route Permissions : CRUD, List, FindOne and Exists */
-  '/api/v1/person': {
+  '/api/v1/family': {
     get: {
       admin: true,
       user: true,
@@ -13,7 +13,7 @@ module.exports.permissions = {
       guest: true
     }
   },
-  '/api/v1/person/:id': {
+  '/api/v1/family/:id': {
     get: {
       admin: true,
       user: true,
@@ -30,21 +30,21 @@ module.exports.permissions = {
       guest: true
     }
   },
-  '/api/v1/person/count': {
+  '/api/v1/family/count': {
     get: {
       admin: true,
       user: true,
       guest: true
     }
   },
-  '/api/v1/person/:id/exists': {
+  '/api/v1/family/:id/exists': {
     get: {
       admin: true,
       user: true,
       guest: true
     }
   },
-  '/api/v1/person/findOne': {
+  '/api/v1/family/findOne': {
     get: {
       admin: true,
       user: true,
@@ -53,28 +53,28 @@ module.exports.permissions = {
   },
 
   /* Aggregate Route Permissions */
-  '/api/v1/person/groupby/:columnName': {
+  '/api/v1/family/groupby/:columnName': {
     get: {
       admin: true,
       user: true,
       guest: true
     }
   },
-  '/api/v1/person/distribution/:columnName': {
+  '/api/v1/family/distribution/:columnName': {
     get: {
       admin: true,
       user: true,
       guest: true
     }
   },
-  '/api/v1/person/distinct/:columnName': {
+  '/api/v1/family/distinct/:columnName': {
     get: {
       admin: true,
       user: true,
       guest: true
     }
   },
-  '/api/v1/person/aggregate/:columnName': {
+  '/api/v1/family/aggregate/:columnName': {
     get: {
       admin: true,
       user: true,
@@ -83,7 +83,7 @@ module.exports.permissions = {
   },
 
   /* Bulk Route Permissions */
-  '/api/v1/person/bulk': {
+  '/api/v1/family/bulk': {
     post: {
       admin: true,
       user: true,
@@ -103,14 +103,14 @@ module.exports.permissions = {
 
   /* Has many routes and permissions */
 
-  '/api/v1/person/has/familyitem': {
+  '/api/v1/family/has/familyitem': {
     get: {
       admin: true,
       user: true,
       guest: true
     }
   },
-  '/api/v1/person/:parentId/familyitem': {
+  '/api/v1/family/:parentId/familyitem': {
     get: {
       admin: true,
       user: true,
@@ -122,21 +122,21 @@ module.exports.permissions = {
       guest: true
     }
   },
-  '/api/v1/person/:parentId/familyitem/findOne': {
+  '/api/v1/family/:parentId/familyitem/findOne': {
     get: {
       admin: true,
       user: true,
       guest: true
     }
   },
-  '/api/v1/person/:parentId/familyitem/count': {
+  '/api/v1/family/:parentId/familyitem/count': {
     get: {
       admin: true,
       user: true,
       guest: true
     }
   },
-  '/api/v1/person/:parentId/familyitem/:id': {
+  '/api/v1/family/:parentId/familyitem/:id': {
     get: {
       admin: true,
       user: true,
@@ -153,65 +153,7 @@ module.exports.permissions = {
       guest: true
     }
   },
-  '/api/v1/person/:parentId/familyitem/:id/exists': {
-    get: {
-      admin: true,
-      user: true,
-      guest: true
-    }
-  },
-
-  '/api/v1/person/has/family': {
-    get: {
-      admin: true,
-      user: true,
-      guest: true
-    }
-  },
-  '/api/v1/person/:parentId/family': {
-    get: {
-      admin: true,
-      user: true,
-      guest: true
-    },
-    post: {
-      admin: true,
-      user: true,
-      guest: true
-    }
-  },
-  '/api/v1/person/:parentId/family/findOne': {
-    get: {
-      admin: true,
-      user: true,
-      guest: true
-    }
-  },
-  '/api/v1/person/:parentId/family/count': {
-    get: {
-      admin: true,
-      user: true,
-      guest: true
-    }
-  },
-  '/api/v1/person/:parentId/family/:id': {
-    get: {
-      admin: true,
-      user: true,
-      guest: true
-    },
-    put: {
-      admin: true,
-      user: true,
-      guest: true
-    },
-    delete: {
-      admin: true,
-      user: true,
-      guest: true
-    }
-  },
-  '/api/v1/person/:parentId/family/:id/exists': {
+  '/api/v1/family/:parentId/familyitem/:id/exists': {
     get: {
       admin: true,
       user: true,
@@ -221,13 +163,7 @@ module.exports.permissions = {
 
 
   /* Belongs to routes and permissions */
-  '/api/v1/person/belongs/:parents': {
-    get: {
-      admin: true,
-      user: true,
-      guest: true
-    }
-  },
+
 
 
 };

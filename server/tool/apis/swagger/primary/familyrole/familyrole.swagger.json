@@ -1,17 +1,17 @@
 {
   "tags": [{
-    "name": "person",
-    "description": "Everything about your person"
+    "name": "familyrole",
+    "description": "Everything about your familyrole"
   }],
   "paths": {
-    "/api/v1/person": {
+    "/api/v1/familyrole": {
       "post": {
         "tags": [
-          "person"
+          "familyrole"
         ],
-        "summary": "Add a new person",
+        "summary": "Add a new familyrole",
         "description": "",
-        "operationId": "addperson",
+        "operationId": "addfamilyrole",
         "consumes": [
           "application/json"
         ],
@@ -21,10 +21,10 @@
         "parameters": [{
           "in": "body",
           "name": "body",
-          "description": "person object that needs to add",
+          "description": "familyrole object that needs to add",
           "required": true,
           "schema": {
-            "$ref": "#/definitions/person"
+            "$ref": "#/definitions/familyrole"
           }
         }],
         "responses": {
@@ -35,11 +35,11 @@
       },
       "get": {
         "tags": [
-          "person"
+          "familyrole"
         ],
         "summary": "Get list",
         "description": "",
-        "operationId": "getperson",
+        "operationId": "getfamilyrole",
         "consumes": [
           "application/json"
         ],
@@ -87,21 +87,21 @@
         }
       }
     },
-    "/api/v1/person/{personId}": {
+    "/api/v1/familyrole/{familyroleId}": {
       "get": {
         "tags": [
-          "person"
+          "familyrole"
         ],
-        "summary": "Find person by ID",
-        "description": "Returns a single person",
-        "operationId": "getpersonById",
+        "summary": "Find familyrole by ID",
+        "description": "Returns a single familyrole",
+        "operationId": "getfamilyroleById",
         "produces": [
           "application/json"
         ],
         "parameters": [{
-          "name": "personId",
+          "name": "familyroleId",
           "in": "path",
-          "description": "ID of person to return",
+          "description": "ID of familyrole to return",
           "required": true,
           "type": "integer",
           "format": "int64"
@@ -110,24 +110,24 @@
           "200": {
             "description": "successful operation",
             "schema": {
-              "$ref": "#/definitions/person"
+              "$ref": "#/definitions/familyrole"
             }
           },
           "400": {
             "description": "Invalid ID supplied"
           },
           "404": {
-            "description": "person not found"
+            "description": "familyrole not found"
           }
         }
       },
       "put": {
         "tags": [
-          "person"
+          "familyrole"
         ],
-        "summary": "Updates a person",
+        "summary": "Updates a familyrole",
         "description": "",
-        "operationId": "updateperson",
+        "operationId": "updatefamilyrole",
         "consumes": [
           "application/json"
         ],
@@ -135,9 +135,9 @@
           "application/json"
         ],
         "parameters": [{
-            "name": "personId",
+            "name": "familyroleId",
             "in": "path",
-            "description": "ID of person to return",
+            "description": "ID of familyrole to return",
             "required": true,
             "type": "integer",
             "format": "int64"
@@ -145,10 +145,10 @@
           {
             "in": "body",
             "name": "body",
-            "description": "person object that needs to be added to the store",
+            "description": "familyrole object that needs to be added to the store",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/person"
+              "$ref": "#/definitions/familyrole"
             }
           }
         ],
@@ -160,18 +160,18 @@
       },
       "delete": {
         "tags": [
-          "person"
+          "familyrole"
         ],
-        "summary": "Deletes a person",
+        "summary": "Deletes a familyrole",
         "description": "",
-        "operationId": "deleteperson",
+        "operationId": "deletefamilyrole",
         "produces": [
           "application/json"
         ],
         "parameters": [{
-          "name": "personId",
+          "name": "familyroleId",
           "in": "path",
-          "description": "ID of person to return",
+          "description": "ID of familyrole to return",
           "required": true,
           "type": "integer",
           "format": "int64"
@@ -181,21 +181,21 @@
             "description": "Invalid ID supplied"
           },
           "404": {
-            "description": "person not found"
+            "description": "familyrole not found"
           }
         }
       }
     },
 
 
-    "/api/v1/person/bulk": {
+    "/api/v1/familyrole/bulk": {
       "post": {
         "tags": [
-          "person"
+          "familyrole"
         ],
-        "summary": "Bulk person insert",
+        "summary": "Bulk familyrole insert",
         "description": "",
-        "operationId": "bulkpersonInsert",
+        "operationId": "bulkfamilyroleInsert",
         "consumes": [
           "application/json"
         ],
@@ -205,12 +205,12 @@
         "parameters": [{
           "in": "body",
           "name": "body",
-          "description": "person objects",
+          "description": "familyrole objects",
           "required": true,
           "schema": {
             "type": "array",
             "items": {
-              "$ref": "#/definitions/person"
+              "$ref": "#/definitions/familyrole"
             }
           }
         }],
@@ -222,11 +222,11 @@
       },
       "put": {
         "tags": [
-          "person"
+          "familyrole"
         ],
-        "summary": "Updates a person",
+        "summary": "Updates a familyrole",
         "description": "",
-        "operationId": "updateperson",
+        "operationId": "updatefamilyrole",
         "consumes": [
           "application/json"
         ],
@@ -236,12 +236,12 @@
         "parameters": [{
           "in": "body",
           "name": "body",
-          "description": "person objects with id",
+          "description": "familyrole objects with id",
           "required": true,
           "schema": {
             "type": "array",
             "items": {
-              "$ref": "#/definitions/person"
+              "$ref": "#/definitions/familyrole"
             }
           }
         }],
@@ -253,23 +253,23 @@
       },
       "delete": {
         "tags": [
-          "person"
+          "familyrole"
         ],
-        "summary": "Deletes a person",
+        "summary": "Deletes a familyrole",
         "description": "",
-        "operationId": "deleteperson",
+        "operationId": "deletefamilyrole",
         "produces": [
           "application/json"
         ],
         "parameters": [{
           "in": "body",
           "name": "body",
-          "description": "person objects contains id",
+          "description": "familyrole objects contains id",
           "required": true,
           "schema": {
             "type": "array",
             "items": {
-              "$ref": "#/definitions/person"
+              "$ref": "#/definitions/familyrole"
             }
           }
         }],
@@ -278,19 +278,19 @@
             "description": "Invalid ID supplied"
           },
           "404": {
-            "description": "person not found"
+            "description": "familyrole not found"
           }
         }
       }
     },
-    "/api/v1/person/findOne": {
+    "/api/v1/familyrole/findOne": {
       "get": {
         "tags": [
-          "person"
+          "familyrole"
         ],
         "summary": "Get first one from filtered data",
         "description": "",
-        "operationId": "findOneperson",
+        "operationId": "findOnefamilyrole",
         "consumes": [
           "application/json"
         ],
@@ -337,27 +337,27 @@
           "200": {
             "description": "successful operation",
             "schema": {
-              "$ref": "#/definitions/person"
+              "$ref": "#/definitions/familyrole"
             }
           }
         }
       }
     },
-    "/api/v1/person/{personId}/exists": {
+    "/api/v1/familyrole/{familyroleId}/exists": {
       "get": {
         "tags": [
-          "person"
+          "familyrole"
         ],
-        "summary": "Check person with provided ID exists",
-        "description": "Returns a single person",
-        "operationId": "checkpersonExists",
+        "summary": "Check familyrole with provided ID exists",
+        "description": "Returns a single familyrole",
+        "operationId": "checkfamilyroleExists",
         "produces": [
           "application/json"
         ],
         "parameters": [{
-          "name": "personId",
+          "name": "familyroleId",
           "in": "path",
-          "description": "ID of person",
+          "description": "ID of familyrole",
           "required": true,
           "type": "integer",
           "format": "int64"
@@ -372,13 +372,13 @@
         }
       }
     },
-    "/api/v1/person/count": {
+    "/api/v1/familyrole/count": {
       "get": {
         "tags": [
-          "person"
+          "familyrole"
         ],
-        "summary": "Get person count",
-        "operationId": "getpersonCount",
+        "summary": "Get familyrole count",
+        "operationId": "getfamilyroleCount",
         "consumes": [
           "application/json"
         ],
@@ -404,14 +404,14 @@
         }
       }
     },
-    "/api/v1/person/groupby/{columnName}": {
+    "/api/v1/familyrole/groupby/{columnName}": {
       "get": {
         "tags": [
-          "person"
+          "familyrole"
         ],
         "summary": "Group by column",
         "description": "",
-        "operationId": "personGroupByColumn",
+        "operationId": "familyroleGroupByColumn",
         "consumes": [
           "application/json"
         ],
@@ -458,20 +458,20 @@
           "200": {
             "description": "successful operation",
             "schema": {
-              "$ref": "#/definitions/person"
+              "$ref": "#/definitions/familyrole"
             }
           }
         }
       }
     },
-    "/api/v1/person/distribution/{columnName}": {
+    "/api/v1/familyrole/distribution/{columnName}": {
       "get": {
         "tags": [
-          "person"
+          "familyrole"
         ],
         "summary": "",
         "description": "",
-        "operationId": "personDistribution",
+        "operationId": "familyroleDistribution",
         "consumes": [
           "application/json"
         ],
@@ -529,14 +529,14 @@
         }
       }
     },
-    "/api/v1/person/distinct/{columnName}": {
+    "/api/v1/familyrole/distinct/{columnName}": {
       "get": {
         "tags": [
-          "person"
+          "familyrole"
         ],
         "summary": "Get first one from filtered data",
         "description": "",
-        "operationId": "personDistinct",
+        "operationId": "familyroleDistinct",
         "consumes": [
           "application/json"
         ],
@@ -592,14 +592,14 @@
         }
       }
     },
-    "/api/v1/person/aggregate/{columnName}": {
+    "/api/v1/familyrole/aggregate/{columnName}": {
       "get": {
         "tags": [
-          "person"
+          "familyrole"
         ],
         "summary": "Get first one from filtered data",
         "description": "",
-        "operationId": "personAggregate",
+        "operationId": "familyroleAggregate",
         "consumes": [
           "application/json"
         ],
@@ -664,7 +664,7 @@
           "200": {
             "description": "successful operation",
             "schema": {
-              "$ref": "#/definitions/person"
+              "$ref": "#/definitions/familyrole"
             }
           }
         }
@@ -672,7 +672,7 @@
     }
   },
   "definitions": {
-    "person": {
+    "familyrole": {
       "type": "object",
       "properties": {
         "id": {
@@ -689,41 +689,8 @@
         "updated_at": {
           "type": "string"
         },
-        "user_id": {
+        "sort": {
           "type": "integer"
-        },
-        "openid": {
-          "type": "string"
-        },
-        "session_key": {
-          "type": "string"
-        },
-        "mobile_phone": {
-          "type": "string"
-        },
-        "avatarUrl": {
-          "type": "string"
-        },
-        "city": {
-          "type": "string"
-        },
-        "country": {
-          "type": "string"
-        },
-        "gender": {
-          "type": "integer"
-        },
-        "language": {
-          "type": "string"
-        },
-        "nickName": {
-          "type": "string"
-        },
-        "province": {
-          "type": "string"
-        },
-        "unionId": {
-          "type": "string"
         }
       }
     }

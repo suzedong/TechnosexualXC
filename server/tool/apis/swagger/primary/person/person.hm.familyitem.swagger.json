@@ -1,0 +1,451 @@
+{
+  "tags": [{
+    "name": "personHasManyfamilyitem",
+    "description": "Everything about has many relation"
+  }],
+  "paths": {
+    "/api/v1/person/has/familyitem": {
+      "get": {
+        "tags": [
+          "personHasManyfamilyitem"
+        ],
+        "summary": "Get person list with familyitem children",
+        "description": "",
+        "operationId": "personHasManyfamilyitemList",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [{
+            "in": "query",
+            "name": "fields",
+            "type": "String",
+            "description": "Comma seperated fields of model"
+          },
+          {
+            "in": "query",
+            "name": "where",
+            "type": "String",
+            "description": "Where expression"
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "description": "page size limit",
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "in": "query",
+            "name": "offset",
+            "description": "pagination offset",
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "in": "query",
+            "name": "sort",
+            "description": "sort parameter",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "object"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/person/{personId}/familyitem": {
+      "get": {
+        "tags": [
+          "personHasManyfamilyitem"
+        ],
+        "summary": "Find familyitem list by parent person id",
+        "description": "Returns a single person",
+        "operationId": "getfamilyitemBypersonId",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [{
+            "name": "personId",
+            "in": "path",
+            "description": "ID of person to return",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "in": "query",
+            "name": "fields",
+            "type": "String",
+            "description": "Comma seperated fields of model"
+          },
+          {
+            "in": "query",
+            "name": "where",
+            "type": "String",
+            "description": "Where expression"
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "description": "page size limit",
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "in": "query",
+            "name": "offset",
+            "description": "pagination offset",
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "in": "query",
+            "name": "sort",
+            "description": "sort parameter",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": "object"
+            }
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "person not found"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "personHasManyfamilyitem"
+        ],
+        "summary": "Insert familyitem under a parent person",
+        "description": "Returns a single person",
+        "operationId": "insertfamilyitemBypersonId",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [{
+            "in": "body",
+            "name": "body",
+            "description": "familyitem object to insert",
+            "required": true,
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "personId",
+            "in": "path",
+            "description": "ID of person to return",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/person/{personId}/familyitem/{familyitemId}": {
+      "get": {
+        "tags": [
+          "personHasManyfamilyitem"
+        ],
+        "summary": "Get by familyitem id parent person id",
+        "description": "Returns a single person",
+        "operationId": "getfamilyitemByIdAndpersonId",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [{
+            "name": "personId",
+            "in": "path",
+            "description": "ID of parent person",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "familyitemId",
+            "in": "path",
+            "description": "ID of familyitem",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": "object"
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "personHasManyfamilyitem"
+        ],
+        "summary": "Delete by familyitem id parent person id",
+        "description": "Returns a single person",
+        "operationId": "deletefamilyitemByIdAndpersonId",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [{
+            "name": "personId",
+            "in": "path",
+            "description": "ID of parent person",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "familyitemId",
+            "in": "path",
+            "description": "ID of cfamilyitem",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "personHasManyfamilyitem"
+        ],
+        "summary": "Update familyitem under a parent person",
+        "description": "Returns a single person",
+        "operationId": "updatefamilyitemByIdAndpersonId",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [{
+            "in": "body",
+            "name": "body",
+            "description": "familyitem object to insert",
+            "required": true,
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "personId",
+            "in": "path",
+            "description": "ID of person to return",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "familyitemId",
+            "in": "path",
+            "description": "ID of familyitem",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/person/{personId}/familyitem/{familyitemId}/exists": {
+      "get": {
+        "tags": [
+          "personHasManyfamilyitem"
+        ],
+        "summary": "Check row exists by familyitem id and parent person id",
+        "description": "",
+        "operationId": "existsfamilyitemByIdAndpersonId",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [{
+            "name": "personId",
+            "in": "path",
+            "description": "ID of parent person",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "familyitemId",
+            "in": "path",
+            "description": "ID of familyitem",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/person/{personId}/familyitem/findOne": {
+      "get": {
+        "tags": [
+          "personHasManyfamilyitem"
+        ],
+        "summary": "Find one familyitem by parent person id and filters",
+        "description": "",
+        "operationId": "findOnefamilyitemBypersonId",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [{
+            "name": "personId",
+            "in": "path",
+            "description": "ID of parent person",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "in": "query",
+            "name": "fields",
+            "type": "String",
+            "description": "Comma seperated fields of model"
+          },
+          {
+            "in": "query",
+            "name": "where",
+            "type": "String",
+            "description": "Where expression"
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "description": "page size limit",
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "in": "query",
+            "name": "offset",
+            "description": "pagination offset",
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "in": "query",
+            "name": "sort",
+            "description": "sort parameter",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/person/{personId}/familyitem/count": {
+      "get": {
+        "tags": [
+          "personHasManyfamilyitem"
+        ],
+        "summary": "Get familyitem count by parent id and filter",
+        "description": "",
+        "operationId": "getCountWithinpersonId",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [{
+            "name": "personId",
+            "in": "path",
+            "description": "ID of parent person",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "in": "query",
+            "name": "where",
+            "type": "String",
+            "description": "Where expression"
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "description": "page size limit",
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "in": "query",
+            "name": "offset",
+            "description": "pagination offset",
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "in": "query",
+            "name": "sort",
+            "description": "sort parameter",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {}
+}

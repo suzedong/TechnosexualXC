@@ -1,17 +1,17 @@
 {
   "tags": [{
-    "name": "personHasManycomments",
+    "name": "personHasManyfamily",
     "description": "Everything about has many relation"
   }],
   "paths": {
-    "/api/v1/person/has/comments": {
+    "/api/v1/person/has/family": {
       "get": {
         "tags": [
-          "personHasManycomments"
+          "personHasManyfamily"
         ],
-        "summary": "Get person list with comments children",
+        "summary": "Get person list with family children",
         "description": "",
-        "operationId": "personHasManycommentsList",
+        "operationId": "personHasManyfamilyList",
         "produces": [
           "application/json"
         ],
@@ -61,14 +61,14 @@
         }
       }
     },
-    "/api/v1/person/{personId}/comments": {
+    "/api/v1/person/{personId}/family": {
       "get": {
         "tags": [
-          "personHasManycomments"
+          "personHasManyfamily"
         ],
-        "summary": "Find comments list by parent person id",
+        "summary": "Find family list by parent person id",
         "description": "Returns a single person",
-        "operationId": "getcommentsBypersonId",
+        "operationId": "getfamilyBypersonId",
         "produces": [
           "application/json"
         ],
@@ -131,11 +131,11 @@
       },
       "post": {
         "tags": [
-          "personHasManycomments"
+          "personHasManyfamily"
         ],
-        "summary": "Insert comments under a parent person",
+        "summary": "Insert family under a parent person",
         "description": "Returns a single person",
-        "operationId": "insertcommentsBypersonId",
+        "operationId": "insertfamilyBypersonId",
         "consumes": [
           "application/json"
         ],
@@ -145,7 +145,7 @@
         "parameters": [{
             "in": "body",
             "name": "body",
-            "description": "comments object to insert",
+            "description": "family object to insert",
             "required": true,
             "schema": {
               "type": "object"
@@ -170,14 +170,14 @@
         }
       }
     },
-    "/api/v1/person/{personId}/comments/{commentsId}": {
+    "/api/v1/person/{personId}/family/{familyId}": {
       "get": {
         "tags": [
-          "personHasManycomments"
+          "personHasManyfamily"
         ],
-        "summary": "Get by comments id parent person id",
+        "summary": "Get by family id parent person id",
         "description": "Returns a single person",
-        "operationId": "getcommentsByIdAndpersonId",
+        "operationId": "getfamilyByIdAndpersonId",
         "produces": [
           "application/json"
         ],
@@ -190,9 +190,9 @@
             "format": "int64"
           },
           {
-            "name": "commentsId",
+            "name": "familyId",
             "in": "path",
-            "description": "ID of comments",
+            "description": "ID of family",
             "required": true,
             "type": "integer",
             "format": "int64"
@@ -210,11 +210,11 @@
       },
       "delete": {
         "tags": [
-          "personHasManycomments"
+          "personHasManyfamily"
         ],
-        "summary": "Delete by comments id parent person id",
+        "summary": "Delete by family id parent person id",
         "description": "Returns a single person",
-        "operationId": "deletecommentsByIdAndpersonId",
+        "operationId": "deletefamilyByIdAndpersonId",
         "produces": [
           "application/json"
         ],
@@ -227,9 +227,9 @@
             "format": "int64"
           },
           {
-            "name": "commentsId",
+            "name": "familyId",
             "in": "path",
-            "description": "ID of ccomments",
+            "description": "ID of cfamily",
             "required": true,
             "type": "integer",
             "format": "int64"
@@ -243,11 +243,11 @@
       },
       "put": {
         "tags": [
-          "personHasManycomments"
+          "personHasManyfamily"
         ],
-        "summary": "Update comments under a parent person",
+        "summary": "Update family under a parent person",
         "description": "Returns a single person",
-        "operationId": "updatecommentsByIdAndpersonId",
+        "operationId": "updatefamilyByIdAndpersonId",
         "consumes": [
           "application/json"
         ],
@@ -257,7 +257,7 @@
         "parameters": [{
             "in": "body",
             "name": "body",
-            "description": "comments object to insert",
+            "description": "family object to insert",
             "required": true,
             "schema": {
               "type": "object"
@@ -272,9 +272,9 @@
             "format": "int64"
           },
           {
-            "name": "commentsId",
+            "name": "familyId",
             "in": "path",
-            "description": "ID of comments",
+            "description": "ID of family",
             "required": true,
             "type": "integer",
             "format": "int64"
@@ -290,14 +290,14 @@
         }
       }
     },
-    "/api/v1/person/{personId}/comments/{commentsId}/exists": {
+    "/api/v1/person/{personId}/family/{familyId}/exists": {
       "get": {
         "tags": [
-          "personHasManycomments"
+          "personHasManyfamily"
         ],
-        "summary": "Check row exists by comments id and parent person id",
+        "summary": "Check row exists by family id and parent person id",
         "description": "",
-        "operationId": "existscommentsByIdAndpersonId",
+        "operationId": "existsfamilyByIdAndpersonId",
         "produces": [
           "application/json"
         ],
@@ -310,9 +310,9 @@
             "format": "int64"
           },
           {
-            "name": "commentsId",
+            "name": "familyId",
             "in": "path",
-            "description": "ID of comments",
+            "description": "ID of family",
             "required": true,
             "type": "integer",
             "format": "int64"
@@ -328,14 +328,14 @@
         }
       }
     },
-    "/api/v1/person/{personId}/comments/findOne": {
+    "/api/v1/person/{personId}/family/findOne": {
       "get": {
         "tags": [
-          "personHasManycomments"
+          "personHasManyfamily"
         ],
-        "summary": "Find one comments by parent person id and filters",
+        "summary": "Find one family by parent person id and filters",
         "description": "",
-        "operationId": "findOnecommentsBypersonId",
+        "operationId": "findOnefamilyBypersonId",
         "produces": [
           "application/json"
         ],
@@ -390,12 +390,12 @@
         }
       }
     },
-    "/api/v1/person/{personId}/comments/count": {
+    "/api/v1/person/{personId}/family/count": {
       "get": {
         "tags": [
-          "personHasManycomments"
+          "personHasManyfamily"
         ],
-        "summary": "Get comments count by parent id and filter",
+        "summary": "Get family count by parent id and filter",
         "description": "",
         "operationId": "getCountWithinpersonId",
         "produces": [

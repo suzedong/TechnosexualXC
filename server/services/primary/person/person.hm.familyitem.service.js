@@ -2,18 +2,18 @@ const {
   BaseService
 } = require('xc-core');
 
-class PersonHmCommentsService extends BaseService {
+class PersonHmFamilyitemService extends BaseService {
 
   constructor(app) {
     super(app);
     this.person = app.$dbs.primary.person;
-    this.comments = app.$dbs.primary.comments;
+    this.familyitem = app.$dbs.primary.familyitem;
   }
 
 
 
   async read(req, res) {
-    let data = await this.comments.readByFk({
+    let data = await this.familyitem.readByFk({
       parentId: req.params.parentId,
       parentTableName: 'person',
       id: req.params.id
@@ -22,7 +22,7 @@ class PersonHmCommentsService extends BaseService {
   }
 
   async update(req, res) {
-    let data = await this.comments.updateByFk({
+    let data = await this.familyitem.updateByFk({
       parentId: req.params.parentId,
       parentTableName: 'person',
       id: req.params.id,
@@ -32,7 +32,7 @@ class PersonHmCommentsService extends BaseService {
   }
 
   async delete(req, res) {
-    let data = await this.comments.delByFk({
+    let data = await this.familyitem.delByFk({
       parentId: req.params.parentId,
       parentTableName: 'person',
       id: req.params.id
@@ -41,7 +41,7 @@ class PersonHmCommentsService extends BaseService {
   }
 
   async create(req, res) {
-    let data = await this.comments.insertByFk({
+    let data = await this.familyitem.insertByFk({
       parentId: req.params.parentId,
       parentTableName: 'person',
       data: req.body
@@ -50,7 +50,7 @@ class PersonHmCommentsService extends BaseService {
   }
 
   async findOne(req, res) {
-    let data = await this.comments.findOneByFk({
+    let data = await this.familyitem.findOneByFk({
       parentId: req.params.parentId,
       parentTableName: 'person',
       ...req.query
@@ -59,7 +59,7 @@ class PersonHmCommentsService extends BaseService {
   }
 
   async count(req, res) {
-    let data = await this.comments.countByFk({
+    let data = await this.familyitem.countByFk({
       parentId: req.params.parentId,
       parentTableName: 'person',
       ...req.query
@@ -68,7 +68,7 @@ class PersonHmCommentsService extends BaseService {
   }
 
   async exists(req, res) {
-    let data = await this.comments.existsByFk({
+    let data = await this.familyitem.existsByFk({
       parentId: req.params.parentId,
       parentTableName: 'person',
       id: req.params.id,
@@ -82,7 +82,7 @@ class PersonHmCommentsService extends BaseService {
 
   async list(req, res) {
     let data = await this.person.hasManyChildren({
-      child: 'comments',
+      child: 'familyitem',
       ...req.params,
       ...req.query
     })
@@ -92,10 +92,10 @@ class PersonHmCommentsService extends BaseService {
   async hasManyList(req, res) {
     return await this.person.hasManyList({
       ...req.query,
-      childs: `comments`
+      childs: `familyitem`
     })
   }
 
 }
 
-module.exports = PersonHmCommentsService;
+module.exports = PersonHmFamilyitemService;

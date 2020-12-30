@@ -1,0 +1,451 @@
+{
+  "tags": [{
+    "name": "familyroleHasManyfamilyitem",
+    "description": "Everything about has many relation"
+  }],
+  "paths": {
+    "/api/v1/familyrole/has/familyitem": {
+      "get": {
+        "tags": [
+          "familyroleHasManyfamilyitem"
+        ],
+        "summary": "Get familyrole list with familyitem children",
+        "description": "",
+        "operationId": "familyroleHasManyfamilyitemList",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [{
+            "in": "query",
+            "name": "fields",
+            "type": "String",
+            "description": "Comma seperated fields of model"
+          },
+          {
+            "in": "query",
+            "name": "where",
+            "type": "String",
+            "description": "Where expression"
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "description": "page size limit",
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "in": "query",
+            "name": "offset",
+            "description": "pagination offset",
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "in": "query",
+            "name": "sort",
+            "description": "sort parameter",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "object"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/familyrole/{familyroleId}/familyitem": {
+      "get": {
+        "tags": [
+          "familyroleHasManyfamilyitem"
+        ],
+        "summary": "Find familyitem list by parent familyrole id",
+        "description": "Returns a single familyrole",
+        "operationId": "getfamilyitemByfamilyroleId",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [{
+            "name": "familyroleId",
+            "in": "path",
+            "description": "ID of familyrole to return",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "in": "query",
+            "name": "fields",
+            "type": "String",
+            "description": "Comma seperated fields of model"
+          },
+          {
+            "in": "query",
+            "name": "where",
+            "type": "String",
+            "description": "Where expression"
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "description": "page size limit",
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "in": "query",
+            "name": "offset",
+            "description": "pagination offset",
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "in": "query",
+            "name": "sort",
+            "description": "sort parameter",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": "object"
+            }
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "familyrole not found"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "familyroleHasManyfamilyitem"
+        ],
+        "summary": "Insert familyitem under a parent familyrole",
+        "description": "Returns a single familyrole",
+        "operationId": "insertfamilyitemByfamilyroleId",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [{
+            "in": "body",
+            "name": "body",
+            "description": "familyitem object to insert",
+            "required": true,
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "familyroleId",
+            "in": "path",
+            "description": "ID of familyrole to return",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/familyrole/{familyroleId}/familyitem/{familyitemId}": {
+      "get": {
+        "tags": [
+          "familyroleHasManyfamilyitem"
+        ],
+        "summary": "Get by familyitem id parent familyrole id",
+        "description": "Returns a single familyrole",
+        "operationId": "getfamilyitemByIdAndfamilyroleId",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [{
+            "name": "familyroleId",
+            "in": "path",
+            "description": "ID of parent familyrole",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "familyitemId",
+            "in": "path",
+            "description": "ID of familyitem",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": "object"
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "familyroleHasManyfamilyitem"
+        ],
+        "summary": "Delete by familyitem id parent familyrole id",
+        "description": "Returns a single familyrole",
+        "operationId": "deletefamilyitemByIdAndfamilyroleId",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [{
+            "name": "familyroleId",
+            "in": "path",
+            "description": "ID of parent familyrole",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "familyitemId",
+            "in": "path",
+            "description": "ID of cfamilyitem",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "familyroleHasManyfamilyitem"
+        ],
+        "summary": "Update familyitem under a parent familyrole",
+        "description": "Returns a single familyrole",
+        "operationId": "updatefamilyitemByIdAndfamilyroleId",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [{
+            "in": "body",
+            "name": "body",
+            "description": "familyitem object to insert",
+            "required": true,
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "familyroleId",
+            "in": "path",
+            "description": "ID of familyrole to return",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "familyitemId",
+            "in": "path",
+            "description": "ID of familyitem",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/familyrole/{familyroleId}/familyitem/{familyitemId}/exists": {
+      "get": {
+        "tags": [
+          "familyroleHasManyfamilyitem"
+        ],
+        "summary": "Check row exists by familyitem id and parent familyrole id",
+        "description": "",
+        "operationId": "existsfamilyitemByIdAndfamilyroleId",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [{
+            "name": "familyroleId",
+            "in": "path",
+            "description": "ID of parent familyrole",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "familyitemId",
+            "in": "path",
+            "description": "ID of familyitem",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/familyrole/{familyroleId}/familyitem/findOne": {
+      "get": {
+        "tags": [
+          "familyroleHasManyfamilyitem"
+        ],
+        "summary": "Find one familyitem by parent familyrole id and filters",
+        "description": "",
+        "operationId": "findOnefamilyitemByfamilyroleId",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [{
+            "name": "familyroleId",
+            "in": "path",
+            "description": "ID of parent familyrole",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "in": "query",
+            "name": "fields",
+            "type": "String",
+            "description": "Comma seperated fields of model"
+          },
+          {
+            "in": "query",
+            "name": "where",
+            "type": "String",
+            "description": "Where expression"
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "description": "page size limit",
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "in": "query",
+            "name": "offset",
+            "description": "pagination offset",
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "in": "query",
+            "name": "sort",
+            "description": "sort parameter",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/familyrole/{familyroleId}/familyitem/count": {
+      "get": {
+        "tags": [
+          "familyroleHasManyfamilyitem"
+        ],
+        "summary": "Get familyitem count by parent id and filter",
+        "description": "",
+        "operationId": "getCountWithinfamilyroleId",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [{
+            "name": "familyroleId",
+            "in": "path",
+            "description": "ID of parent familyrole",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "in": "query",
+            "name": "where",
+            "type": "String",
+            "description": "Where expression"
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "description": "page size limit",
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "in": "query",
+            "name": "offset",
+            "description": "pagination offset",
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "in": "query",
+            "name": "sort",
+            "description": "sort parameter",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {}
+}

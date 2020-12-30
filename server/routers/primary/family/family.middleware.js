@@ -2,21 +2,21 @@ const {
   BaseMiddleware
 } = require('xc-core');
 
-class CommentsMiddleware extends BaseMiddleware {
+class FamilyMiddleware extends BaseMiddleware {
 
   constructor(app) {
     super({
       app
     });
-    this.permissions = require('./comments.policy').permissions;
+    this.permissions = require('./family.policy').permissions;
     // this.$acl = app.acl;
-    // this.$acl.addPolicy(require('./comments.policy').acl);
+    // this.$acl.addPolicy(require('./family.policy').acl);
   }
 
 
   async default (req, res, next) {
 
-    console.log('Comments middleware;')
+    console.log('Family middleware;')
 
     let roles = req.user ? req.user.roles : {
       guest: true
@@ -45,4 +45,4 @@ class CommentsMiddleware extends BaseMiddleware {
 
 }
 
-module.exports = CommentsMiddleware;
+module.exports = FamilyMiddleware;

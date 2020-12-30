@@ -1,7 +1,7 @@
 module.exports.permissions = {
 
   /* Route Permissions : CRUD, List, FindOne and Exists */
-  '/api/v1/comments': {
+  '/api/v1/familyrole': {
     get: {
       admin: true,
       user: true,
@@ -13,7 +13,7 @@ module.exports.permissions = {
       guest: true
     }
   },
-  '/api/v1/comments/:id': {
+  '/api/v1/familyrole/:id': {
     get: {
       admin: true,
       user: true,
@@ -30,21 +30,21 @@ module.exports.permissions = {
       guest: true
     }
   },
-  '/api/v1/comments/count': {
+  '/api/v1/familyrole/count': {
     get: {
       admin: true,
       user: true,
       guest: true
     }
   },
-  '/api/v1/comments/:id/exists': {
+  '/api/v1/familyrole/:id/exists': {
     get: {
       admin: true,
       user: true,
       guest: true
     }
   },
-  '/api/v1/comments/findOne': {
+  '/api/v1/familyrole/findOne': {
     get: {
       admin: true,
       user: true,
@@ -53,28 +53,28 @@ module.exports.permissions = {
   },
 
   /* Aggregate Route Permissions */
-  '/api/v1/comments/groupby/:columnName': {
+  '/api/v1/familyrole/groupby/:columnName': {
     get: {
       admin: true,
       user: true,
       guest: true
     }
   },
-  '/api/v1/comments/distribution/:columnName': {
+  '/api/v1/familyrole/distribution/:columnName': {
     get: {
       admin: true,
       user: true,
       guest: true
     }
   },
-  '/api/v1/comments/distinct/:columnName': {
+  '/api/v1/familyrole/distinct/:columnName': {
     get: {
       admin: true,
       user: true,
       guest: true
     }
   },
-  '/api/v1/comments/aggregate/:columnName': {
+  '/api/v1/familyrole/aggregate/:columnName': {
     get: {
       admin: true,
       user: true,
@@ -83,7 +83,7 @@ module.exports.permissions = {
   },
 
   /* Bulk Route Permissions */
-  '/api/v1/comments/bulk': {
+  '/api/v1/familyrole/bulk': {
     post: {
       admin: true,
       user: true,
@@ -105,13 +105,7 @@ module.exports.permissions = {
 
 
   /* Belongs to routes and permissions */
-  '/api/v1/comments/belongs/:parents': {
-    get: {
-      admin: true,
-      user: true,
-      guest: true
-    }
-  },
+
 
 
 };

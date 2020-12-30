@@ -184,15 +184,26 @@ module.exports = {
   ],
   pks: [],
   hasMany: [{
-    "constraintName": "comments_person_id_foreign",
-    "tableName": "comments",
+    "constraintName": "familyitem_person_id_foreign",
+    "tableName": "familyitem",
     "columnName": "person_id",
     "positionInUniqueConstraint": 1,
     "referencedTableName": "person",
     "referencedColumnName": "id",
     "matchOption": "NONE",
-    "updateRule": "RESTRICT",
-    "deleteRule": "RESTRICT",
+    "updateRule": "CASCADE",
+    "deleteRule": "CASCADE",
+    "tableSchema": "txc"
+  }, {
+    "constraintName": "family_person_id_foreign",
+    "tableName": "family",
+    "columnName": "person_id",
+    "positionInUniqueConstraint": 1,
+    "referencedTableName": "person",
+    "referencedColumnName": "id",
+    "matchOption": "NONE",
+    "updateRule": "CASCADE",
+    "deleteRule": "CASCADE",
     "tableSchema": "txc"
   }],
   belongsTo: [{

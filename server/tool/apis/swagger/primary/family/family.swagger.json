@@ -1,17 +1,17 @@
 {
   "tags": [{
-    "name": "person",
-    "description": "Everything about your person"
+    "name": "family",
+    "description": "Everything about your family"
   }],
   "paths": {
-    "/api/v1/person": {
+    "/api/v1/family": {
       "post": {
         "tags": [
-          "person"
+          "family"
         ],
-        "summary": "Add a new person",
+        "summary": "Add a new family",
         "description": "",
-        "operationId": "addperson",
+        "operationId": "addfamily",
         "consumes": [
           "application/json"
         ],
@@ -21,10 +21,10 @@
         "parameters": [{
           "in": "body",
           "name": "body",
-          "description": "person object that needs to add",
+          "description": "family object that needs to add",
           "required": true,
           "schema": {
-            "$ref": "#/definitions/person"
+            "$ref": "#/definitions/family"
           }
         }],
         "responses": {
@@ -35,11 +35,11 @@
       },
       "get": {
         "tags": [
-          "person"
+          "family"
         ],
         "summary": "Get list",
         "description": "",
-        "operationId": "getperson",
+        "operationId": "getfamily",
         "consumes": [
           "application/json"
         ],
@@ -87,21 +87,21 @@
         }
       }
     },
-    "/api/v1/person/{personId}": {
+    "/api/v1/family/{familyId}": {
       "get": {
         "tags": [
-          "person"
+          "family"
         ],
-        "summary": "Find person by ID",
-        "description": "Returns a single person",
-        "operationId": "getpersonById",
+        "summary": "Find family by ID",
+        "description": "Returns a single family",
+        "operationId": "getfamilyById",
         "produces": [
           "application/json"
         ],
         "parameters": [{
-          "name": "personId",
+          "name": "familyId",
           "in": "path",
-          "description": "ID of person to return",
+          "description": "ID of family to return",
           "required": true,
           "type": "integer",
           "format": "int64"
@@ -110,24 +110,24 @@
           "200": {
             "description": "successful operation",
             "schema": {
-              "$ref": "#/definitions/person"
+              "$ref": "#/definitions/family"
             }
           },
           "400": {
             "description": "Invalid ID supplied"
           },
           "404": {
-            "description": "person not found"
+            "description": "family not found"
           }
         }
       },
       "put": {
         "tags": [
-          "person"
+          "family"
         ],
-        "summary": "Updates a person",
+        "summary": "Updates a family",
         "description": "",
-        "operationId": "updateperson",
+        "operationId": "updatefamily",
         "consumes": [
           "application/json"
         ],
@@ -135,9 +135,9 @@
           "application/json"
         ],
         "parameters": [{
-            "name": "personId",
+            "name": "familyId",
             "in": "path",
-            "description": "ID of person to return",
+            "description": "ID of family to return",
             "required": true,
             "type": "integer",
             "format": "int64"
@@ -145,10 +145,10 @@
           {
             "in": "body",
             "name": "body",
-            "description": "person object that needs to be added to the store",
+            "description": "family object that needs to be added to the store",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/person"
+              "$ref": "#/definitions/family"
             }
           }
         ],
@@ -160,18 +160,18 @@
       },
       "delete": {
         "tags": [
-          "person"
+          "family"
         ],
-        "summary": "Deletes a person",
+        "summary": "Deletes a family",
         "description": "",
-        "operationId": "deleteperson",
+        "operationId": "deletefamily",
         "produces": [
           "application/json"
         ],
         "parameters": [{
-          "name": "personId",
+          "name": "familyId",
           "in": "path",
-          "description": "ID of person to return",
+          "description": "ID of family to return",
           "required": true,
           "type": "integer",
           "format": "int64"
@@ -181,21 +181,21 @@
             "description": "Invalid ID supplied"
           },
           "404": {
-            "description": "person not found"
+            "description": "family not found"
           }
         }
       }
     },
 
 
-    "/api/v1/person/bulk": {
+    "/api/v1/family/bulk": {
       "post": {
         "tags": [
-          "person"
+          "family"
         ],
-        "summary": "Bulk person insert",
+        "summary": "Bulk family insert",
         "description": "",
-        "operationId": "bulkpersonInsert",
+        "operationId": "bulkfamilyInsert",
         "consumes": [
           "application/json"
         ],
@@ -205,12 +205,12 @@
         "parameters": [{
           "in": "body",
           "name": "body",
-          "description": "person objects",
+          "description": "family objects",
           "required": true,
           "schema": {
             "type": "array",
             "items": {
-              "$ref": "#/definitions/person"
+              "$ref": "#/definitions/family"
             }
           }
         }],
@@ -222,11 +222,11 @@
       },
       "put": {
         "tags": [
-          "person"
+          "family"
         ],
-        "summary": "Updates a person",
+        "summary": "Updates a family",
         "description": "",
-        "operationId": "updateperson",
+        "operationId": "updatefamily",
         "consumes": [
           "application/json"
         ],
@@ -236,12 +236,12 @@
         "parameters": [{
           "in": "body",
           "name": "body",
-          "description": "person objects with id",
+          "description": "family objects with id",
           "required": true,
           "schema": {
             "type": "array",
             "items": {
-              "$ref": "#/definitions/person"
+              "$ref": "#/definitions/family"
             }
           }
         }],
@@ -253,23 +253,23 @@
       },
       "delete": {
         "tags": [
-          "person"
+          "family"
         ],
-        "summary": "Deletes a person",
+        "summary": "Deletes a family",
         "description": "",
-        "operationId": "deleteperson",
+        "operationId": "deletefamily",
         "produces": [
           "application/json"
         ],
         "parameters": [{
           "in": "body",
           "name": "body",
-          "description": "person objects contains id",
+          "description": "family objects contains id",
           "required": true,
           "schema": {
             "type": "array",
             "items": {
-              "$ref": "#/definitions/person"
+              "$ref": "#/definitions/family"
             }
           }
         }],
@@ -278,19 +278,19 @@
             "description": "Invalid ID supplied"
           },
           "404": {
-            "description": "person not found"
+            "description": "family not found"
           }
         }
       }
     },
-    "/api/v1/person/findOne": {
+    "/api/v1/family/findOne": {
       "get": {
         "tags": [
-          "person"
+          "family"
         ],
         "summary": "Get first one from filtered data",
         "description": "",
-        "operationId": "findOneperson",
+        "operationId": "findOnefamily",
         "consumes": [
           "application/json"
         ],
@@ -337,27 +337,27 @@
           "200": {
             "description": "successful operation",
             "schema": {
-              "$ref": "#/definitions/person"
+              "$ref": "#/definitions/family"
             }
           }
         }
       }
     },
-    "/api/v1/person/{personId}/exists": {
+    "/api/v1/family/{familyId}/exists": {
       "get": {
         "tags": [
-          "person"
+          "family"
         ],
-        "summary": "Check person with provided ID exists",
-        "description": "Returns a single person",
-        "operationId": "checkpersonExists",
+        "summary": "Check family with provided ID exists",
+        "description": "Returns a single family",
+        "operationId": "checkfamilyExists",
         "produces": [
           "application/json"
         ],
         "parameters": [{
-          "name": "personId",
+          "name": "familyId",
           "in": "path",
-          "description": "ID of person",
+          "description": "ID of family",
           "required": true,
           "type": "integer",
           "format": "int64"
@@ -372,13 +372,13 @@
         }
       }
     },
-    "/api/v1/person/count": {
+    "/api/v1/family/count": {
       "get": {
         "tags": [
-          "person"
+          "family"
         ],
-        "summary": "Get person count",
-        "operationId": "getpersonCount",
+        "summary": "Get family count",
+        "operationId": "getfamilyCount",
         "consumes": [
           "application/json"
         ],
@@ -404,14 +404,14 @@
         }
       }
     },
-    "/api/v1/person/groupby/{columnName}": {
+    "/api/v1/family/groupby/{columnName}": {
       "get": {
         "tags": [
-          "person"
+          "family"
         ],
         "summary": "Group by column",
         "description": "",
-        "operationId": "personGroupByColumn",
+        "operationId": "familyGroupByColumn",
         "consumes": [
           "application/json"
         ],
@@ -458,20 +458,20 @@
           "200": {
             "description": "successful operation",
             "schema": {
-              "$ref": "#/definitions/person"
+              "$ref": "#/definitions/family"
             }
           }
         }
       }
     },
-    "/api/v1/person/distribution/{columnName}": {
+    "/api/v1/family/distribution/{columnName}": {
       "get": {
         "tags": [
-          "person"
+          "family"
         ],
         "summary": "",
         "description": "",
-        "operationId": "personDistribution",
+        "operationId": "familyDistribution",
         "consumes": [
           "application/json"
         ],
@@ -529,14 +529,14 @@
         }
       }
     },
-    "/api/v1/person/distinct/{columnName}": {
+    "/api/v1/family/distinct/{columnName}": {
       "get": {
         "tags": [
-          "person"
+          "family"
         ],
         "summary": "Get first one from filtered data",
         "description": "",
-        "operationId": "personDistinct",
+        "operationId": "familyDistinct",
         "consumes": [
           "application/json"
         ],
@@ -592,14 +592,14 @@
         }
       }
     },
-    "/api/v1/person/aggregate/{columnName}": {
+    "/api/v1/family/aggregate/{columnName}": {
       "get": {
         "tags": [
-          "person"
+          "family"
         ],
         "summary": "Get first one from filtered data",
         "description": "",
-        "operationId": "personAggregate",
+        "operationId": "familyAggregate",
         "consumes": [
           "application/json"
         ],
@@ -664,7 +664,7 @@
           "200": {
             "description": "successful operation",
             "schema": {
-              "$ref": "#/definitions/person"
+              "$ref": "#/definitions/family"
             }
           }
         }
@@ -672,7 +672,7 @@
     }
   },
   "definitions": {
-    "person": {
+    "family": {
       "type": "object",
       "properties": {
         "id": {
@@ -689,41 +689,8 @@
         "updated_at": {
           "type": "string"
         },
-        "user_id": {
+        "person_id": {
           "type": "integer"
-        },
-        "openid": {
-          "type": "string"
-        },
-        "session_key": {
-          "type": "string"
-        },
-        "mobile_phone": {
-          "type": "string"
-        },
-        "avatarUrl": {
-          "type": "string"
-        },
-        "city": {
-          "type": "string"
-        },
-        "country": {
-          "type": "string"
-        },
-        "gender": {
-          "type": "integer"
-        },
-        "language": {
-          "type": "string"
-        },
-        "nickName": {
-          "type": "string"
-        },
-        "province": {
-          "type": "string"
-        },
-        "unionId": {
-          "type": "string"
         }
       }
     }

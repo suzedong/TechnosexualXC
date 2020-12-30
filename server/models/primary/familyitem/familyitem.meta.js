@@ -1,5 +1,5 @@
 module.exports = {
-  tableName: 'comments',
+  tableName: 'familyitem',
   columns: [{
       columnName: 'id',
       type: 'integer',
@@ -50,7 +50,29 @@ module.exports = {
       },
     },
     {
+      columnName: 'family_id',
+      type: 'integer',
+      dataType: 'int',
+      data_type_x_precision: "11",
+      validate: {
+        func: [],
+        args: [],
+        msg: []
+      },
+    },
+    {
       columnName: 'person_id',
+      type: 'integer',
+      dataType: 'int',
+      data_type_x_precision: "11",
+      validate: {
+        func: [],
+        args: [],
+        msg: []
+      },
+    },
+    {
+      columnName: 'familyrole_id',
       type: 'integer',
       dataType: 'int',
       data_type_x_precision: "11",
@@ -64,15 +86,37 @@ module.exports = {
   pks: [],
   hasMany: [],
   belongsTo: [{
-    "constraintName": "comments_person_id_foreign",
-    "tableName": "comments",
+    "constraintName": "familyitem_familyrole_id_foreign",
+    "tableName": "familyitem",
+    "columnName": "familyrole_id",
+    "positionInUniqueConstraint": 1,
+    "referencedTableName": "familyrole",
+    "referencedColumnName": "id",
+    "matchOption": "NONE",
+    "updateRule": "CASCADE",
+    "deleteRule": "CASCADE",
+    "tableSchema": "txc"
+  }, {
+    "constraintName": "familyitem_family_id_foreign",
+    "tableName": "familyitem",
+    "columnName": "family_id",
+    "positionInUniqueConstraint": 1,
+    "referencedTableName": "family",
+    "referencedColumnName": "id",
+    "matchOption": "NONE",
+    "updateRule": "CASCADE",
+    "deleteRule": "CASCADE",
+    "tableSchema": "txc"
+  }, {
+    "constraintName": "familyitem_person_id_foreign",
+    "tableName": "familyitem",
     "columnName": "person_id",
     "positionInUniqueConstraint": 1,
     "referencedTableName": "person",
     "referencedColumnName": "id",
     "matchOption": "NONE",
-    "updateRule": "RESTRICT",
-    "deleteRule": "RESTRICT",
+    "updateRule": "CASCADE",
+    "deleteRule": "CASCADE",
     "tableSchema": "txc"
   }],
   dbType: 'mysql'

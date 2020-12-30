@@ -1,17 +1,17 @@
 {
   "tags": [{
-    "name": "commentsBelongsToperson",
+    "name": "familyitemBelongsTofamilyrole",
     "description": "Everything about belongs to relation"
   }],
   "paths": {
-    "/api/v1/comments/belongs/person": {
+    "/api/v1/familyitem/belongs/familyrole": {
       "get": {
         "tags": [
-          "commentsBelongsToperson"
+          "familyitemBelongsTofamilyrole"
         ],
-        "summary": "Get comments list with person parent",
+        "summary": "Get familyitem list with familyrole parent",
         "description": "",
-        "operationId": "commentsWithParent",
+        "operationId": "familyitemWithParent",
         "produces": [
           "application/json"
         ],

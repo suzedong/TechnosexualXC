@@ -17,19 +17,51 @@
       "description": "Everything about User Authentication"
     },
     {
-      "name": "commentsBelongsToperson",
+      "name": "familyBelongsToperson",
       "description": "Everything about belongs to relation"
     },
     {
-      "name": "comments",
-      "description": "Everything about your comments"
+      "name": "familyHasManyfamilyitem",
+      "description": "Everything about has many relation"
+    },
+    {
+      "name": "family",
+      "description": "Everything about your family"
+    },
+    {
+      "name": "familyitemBelongsTofamily",
+      "description": "Everything about belongs to relation"
+    },
+    {
+      "name": "familyitemBelongsTofamilyrole",
+      "description": "Everything about belongs to relation"
+    },
+    {
+      "name": "familyitemBelongsToperson",
+      "description": "Everything about belongs to relation"
+    },
+    {
+      "name": "familyitem",
+      "description": "Everything about your familyitem"
+    },
+    {
+      "name": "familyroleHasManyfamilyitem",
+      "description": "Everything about has many relation"
+    },
+    {
+      "name": "familyrole",
+      "description": "Everything about your familyrole"
     },
     {
       "name": "personBelongsTousers",
       "description": "Everything about belongs to relation"
     },
     {
-      "name": "personHasManycomments",
+      "name": "personHasManyfamily",
+      "description": "Everything about has many relation"
+    },
+    {
+      "name": "personHasManyfamilyitem",
       "description": "Everything about has many relation"
     },
     {
@@ -463,14 +495,14 @@
         "operationId": "facebookAuthenticationCallback"
       }
     },
-    "/api/v1/comments/belongs/person": {
+    "/api/v1/family/belongs/person": {
       "get": {
         "tags": [
-          "commentsBelongsToperson"
+          "familyBelongsToperson"
         ],
-        "summary": "Get comments list with person parent",
+        "summary": "Get family list with person parent",
         "description": "",
-        "operationId": "commentsWithParent",
+        "operationId": "familyWithParent",
         "produces": [
           "application/json"
         ],
@@ -515,14 +547,140 @@
         }
       }
     },
-    "/api/v1/comments": {
+    "/api/v1/family/has/familyitem": {
+      "get": {
+        "tags": [
+          "familyHasManyfamilyitem"
+        ],
+        "summary": "Get family list with familyitem children",
+        "description": "",
+        "operationId": "familyHasManyfamilyitemList",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "fields",
+            "type": "String",
+            "description": "Comma seperated fields of model"
+          },
+          {
+            "in": "query",
+            "name": "where",
+            "type": "String",
+            "description": "Where expression"
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "description": "page size limit",
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "in": "query",
+            "name": "offset",
+            "description": "pagination offset",
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "in": "query",
+            "name": "sort",
+            "description": "sort parameter",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "object"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/family/{familyId}/familyitem": {
+      "get": {
+        "tags": [
+          "familyHasManyfamilyitem"
+        ],
+        "summary": "Find familyitem list by parent family id",
+        "description": "Returns a single family",
+        "operationId": "getfamilyitemByfamilyId",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "familyId",
+            "in": "path",
+            "description": "ID of family to return",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "in": "query",
+            "name": "fields",
+            "type": "String",
+            "description": "Comma seperated fields of model"
+          },
+          {
+            "in": "query",
+            "name": "where",
+            "type": "String",
+            "description": "Where expression"
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "description": "page size limit",
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "in": "query",
+            "name": "offset",
+            "description": "pagination offset",
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "in": "query",
+            "name": "sort",
+            "description": "sort parameter",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": "object"
+            }
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "family not found"
+          }
+        }
+      },
       "post": {
         "tags": [
-          "comments"
+          "familyHasManyfamilyitem"
         ],
-        "summary": "Add a new comments",
-        "description": "",
-        "operationId": "addcomments",
+        "summary": "Insert familyitem under a parent family",
+        "description": "Returns a single family",
+        "operationId": "insertfamilyitemByfamilyId",
         "consumes": [
           "application/json"
         ],
@@ -533,10 +691,335 @@
           {
             "in": "body",
             "name": "body",
-            "description": "comments object that needs to add",
+            "description": "familyitem object to insert",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/comments"
+              "type": "object"
+            }
+          },
+          {
+            "name": "familyId",
+            "in": "path",
+            "description": "ID of family to return",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/family/{familyId}/familyitem/{familyitemId}": {
+      "get": {
+        "tags": [
+          "familyHasManyfamilyitem"
+        ],
+        "summary": "Get by familyitem id parent family id",
+        "description": "Returns a single family",
+        "operationId": "getfamilyitemByIdAndfamilyId",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "familyId",
+            "in": "path",
+            "description": "ID of parent family",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "familyitemId",
+            "in": "path",
+            "description": "ID of familyitem",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": "object"
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "familyHasManyfamilyitem"
+        ],
+        "summary": "Delete by familyitem id parent family id",
+        "description": "Returns a single family",
+        "operationId": "deletefamilyitemByIdAndfamilyId",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "familyId",
+            "in": "path",
+            "description": "ID of parent family",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "familyitemId",
+            "in": "path",
+            "description": "ID of cfamilyitem",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "familyHasManyfamilyitem"
+        ],
+        "summary": "Update familyitem under a parent family",
+        "description": "Returns a single family",
+        "operationId": "updatefamilyitemByIdAndfamilyId",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "familyitem object to insert",
+            "required": true,
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "familyId",
+            "in": "path",
+            "description": "ID of family to return",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "familyitemId",
+            "in": "path",
+            "description": "ID of familyitem",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/family/{familyId}/familyitem/{familyitemId}/exists": {
+      "get": {
+        "tags": [
+          "familyHasManyfamilyitem"
+        ],
+        "summary": "Check row exists by familyitem id and parent family id",
+        "description": "",
+        "operationId": "existsfamilyitemByIdAndfamilyId",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "familyId",
+            "in": "path",
+            "description": "ID of parent family",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "familyitemId",
+            "in": "path",
+            "description": "ID of familyitem",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/family/{familyId}/familyitem/findOne": {
+      "get": {
+        "tags": [
+          "familyHasManyfamilyitem"
+        ],
+        "summary": "Find one familyitem by parent family id and filters",
+        "description": "",
+        "operationId": "findOnefamilyitemByfamilyId",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "familyId",
+            "in": "path",
+            "description": "ID of parent family",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "in": "query",
+            "name": "fields",
+            "type": "String",
+            "description": "Comma seperated fields of model"
+          },
+          {
+            "in": "query",
+            "name": "where",
+            "type": "String",
+            "description": "Where expression"
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "description": "page size limit",
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "in": "query",
+            "name": "offset",
+            "description": "pagination offset",
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "in": "query",
+            "name": "sort",
+            "description": "sort parameter",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/family/{familyId}/familyitem/count": {
+      "get": {
+        "tags": [
+          "familyHasManyfamilyitem"
+        ],
+        "summary": "Get familyitem count by parent id and filter",
+        "description": "",
+        "operationId": "getCountWithinfamilyId",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "familyId",
+            "in": "path",
+            "description": "ID of parent family",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "in": "query",
+            "name": "where",
+            "type": "String",
+            "description": "Where expression"
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "description": "page size limit",
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "in": "query",
+            "name": "offset",
+            "description": "pagination offset",
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "in": "query",
+            "name": "sort",
+            "description": "sort parameter",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/family": {
+      "post": {
+        "tags": [
+          "family"
+        ],
+        "summary": "Add a new family",
+        "description": "",
+        "operationId": "addfamily",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "family object that needs to add",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/family"
             }
           }
         ],
@@ -548,11 +1031,11 @@
       },
       "get": {
         "tags": [
-          "comments"
+          "family"
         ],
         "summary": "Get list",
         "description": "",
-        "operationId": "getcomments",
+        "operationId": "getfamily",
         "consumes": [
           "application/json"
         ],
@@ -600,22 +1083,22 @@
         }
       }
     },
-    "/api/v1/comments/{commentsId}": {
+    "/api/v1/family/{familyId}": {
       "get": {
         "tags": [
-          "comments"
+          "family"
         ],
-        "summary": "Find comments by ID",
-        "description": "Returns a single comments",
-        "operationId": "getcommentsById",
+        "summary": "Find family by ID",
+        "description": "Returns a single family",
+        "operationId": "getfamilyById",
         "produces": [
           "application/json"
         ],
         "parameters": [
           {
-            "name": "commentsId",
+            "name": "familyId",
             "in": "path",
-            "description": "ID of comments to return",
+            "description": "ID of family to return",
             "required": true,
             "type": "integer",
             "format": "int64"
@@ -625,24 +1108,24 @@
           "200": {
             "description": "successful operation",
             "schema": {
-              "$ref": "#/definitions/comments"
+              "$ref": "#/definitions/family"
             }
           },
           "400": {
             "description": "Invalid ID supplied"
           },
           "404": {
-            "description": "comments not found"
+            "description": "family not found"
           }
         }
       },
       "put": {
         "tags": [
-          "comments"
+          "family"
         ],
-        "summary": "Updates a comments",
+        "summary": "Updates a family",
         "description": "",
-        "operationId": "updatecomments",
+        "operationId": "updatefamily",
         "consumes": [
           "application/json"
         ],
@@ -651,9 +1134,9 @@
         ],
         "parameters": [
           {
-            "name": "commentsId",
+            "name": "familyId",
             "in": "path",
-            "description": "ID of comments to return",
+            "description": "ID of family to return",
             "required": true,
             "type": "integer",
             "format": "int64"
@@ -661,10 +1144,10 @@
           {
             "in": "body",
             "name": "body",
-            "description": "comments object that needs to be added to the store",
+            "description": "family object that needs to be added to the store",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/comments"
+              "$ref": "#/definitions/family"
             }
           }
         ],
@@ -676,19 +1159,19 @@
       },
       "delete": {
         "tags": [
-          "comments"
+          "family"
         ],
-        "summary": "Deletes a comments",
+        "summary": "Deletes a family",
         "description": "",
-        "operationId": "deletecomments",
+        "operationId": "deletefamily",
         "produces": [
           "application/json"
         ],
         "parameters": [
           {
-            "name": "commentsId",
+            "name": "familyId",
             "in": "path",
-            "description": "ID of comments to return",
+            "description": "ID of family to return",
             "required": true,
             "type": "integer",
             "format": "int64"
@@ -699,19 +1182,19 @@
             "description": "Invalid ID supplied"
           },
           "404": {
-            "description": "comments not found"
+            "description": "family not found"
           }
         }
       }
     },
-    "/api/v1/comments/bulk": {
+    "/api/v1/family/bulk": {
       "post": {
         "tags": [
-          "comments"
+          "family"
         ],
-        "summary": "Bulk comments insert",
+        "summary": "Bulk family insert",
         "description": "",
-        "operationId": "bulkcommentsInsert",
+        "operationId": "bulkfamilyInsert",
         "consumes": [
           "application/json"
         ],
@@ -722,12 +1205,12 @@
           {
             "in": "body",
             "name": "body",
-            "description": "comments objects",
+            "description": "family objects",
             "required": true,
             "schema": {
               "type": "array",
               "items": {
-                "$ref": "#/definitions/comments"
+                "$ref": "#/definitions/family"
               }
             }
           }
@@ -740,11 +1223,11 @@
       },
       "put": {
         "tags": [
-          "comments"
+          "family"
         ],
-        "summary": "Updates a comments",
+        "summary": "Updates a family",
         "description": "",
-        "operationId": "updatecomments",
+        "operationId": "updatefamily",
         "consumes": [
           "application/json"
         ],
@@ -755,12 +1238,12 @@
           {
             "in": "body",
             "name": "body",
-            "description": "comments objects with id",
+            "description": "family objects with id",
             "required": true,
             "schema": {
               "type": "array",
               "items": {
-                "$ref": "#/definitions/comments"
+                "$ref": "#/definitions/family"
               }
             }
           }
@@ -773,11 +1256,11 @@
       },
       "delete": {
         "tags": [
-          "comments"
+          "family"
         ],
-        "summary": "Deletes a comments",
+        "summary": "Deletes a family",
         "description": "",
-        "operationId": "deletecomments",
+        "operationId": "deletefamily",
         "produces": [
           "application/json"
         ],
@@ -785,12 +1268,12 @@
           {
             "in": "body",
             "name": "body",
-            "description": "comments objects contains id",
+            "description": "family objects contains id",
             "required": true,
             "schema": {
               "type": "array",
               "items": {
-                "$ref": "#/definitions/comments"
+                "$ref": "#/definitions/family"
               }
             }
           }
@@ -800,19 +1283,19 @@
             "description": "Invalid ID supplied"
           },
           "404": {
-            "description": "comments not found"
+            "description": "family not found"
           }
         }
       }
     },
-    "/api/v1/comments/findOne": {
+    "/api/v1/family/findOne": {
       "get": {
         "tags": [
-          "comments"
+          "family"
         ],
         "summary": "Get first one from filtered data",
         "description": "",
-        "operationId": "findOnecomments",
+        "operationId": "findOnefamily",
         "consumes": [
           "application/json"
         ],
@@ -857,7 +1340,7 @@
           "200": {
             "description": "successful operation",
             "schema": {
-              "$ref": "#/definitions/comments"
+              "$ref": "#/definitions/family"
             }
           },
           "405": {
@@ -866,22 +1349,22 @@
         }
       }
     },
-    "/api/v1/comments/{commentsId}/exists": {
+    "/api/v1/family/{familyId}/exists": {
       "get": {
         "tags": [
-          "comments"
+          "family"
         ],
-        "summary": "Check comments with provided ID exists",
-        "description": "Returns a single comments",
-        "operationId": "checkcommentsExists",
+        "summary": "Check family with provided ID exists",
+        "description": "Returns a single family",
+        "operationId": "checkfamilyExists",
         "produces": [
           "application/json"
         ],
         "parameters": [
           {
-            "name": "commentsId",
+            "name": "familyId",
             "in": "path",
-            "description": "ID of comments",
+            "description": "ID of family",
             "required": true,
             "type": "integer",
             "format": "int64"
@@ -897,13 +1380,13 @@
         }
       }
     },
-    "/api/v1/comments/count": {
+    "/api/v1/family/count": {
       "get": {
         "tags": [
-          "comments"
+          "family"
         ],
-        "summary": "Get comments count",
-        "operationId": "getcommentsCount",
+        "summary": "Get family count",
+        "operationId": "getfamilyCount",
         "consumes": [
           "application/json"
         ],
@@ -931,14 +1414,14 @@
         }
       }
     },
-    "/api/v1/comments/groupby/{columnName}": {
+    "/api/v1/family/groupby/{columnName}": {
       "get": {
         "tags": [
-          "comments"
+          "family"
         ],
         "summary": "Group by column",
         "description": "",
-        "operationId": "commentsGroupByColumn",
+        "operationId": "familyGroupByColumn",
         "consumes": [
           "application/json"
         ],
@@ -983,7 +1466,7 @@
           "200": {
             "description": "successful operation",
             "schema": {
-              "$ref": "#/definitions/comments"
+              "$ref": "#/definitions/family"
             }
           },
           "405": {
@@ -992,14 +1475,14 @@
         }
       }
     },
-    "/api/v1/comments/distribution/{columnName}": {
+    "/api/v1/family/distribution/{columnName}": {
       "get": {
         "tags": [
-          "comments"
+          "family"
         ],
         "summary": "",
         "description": "",
-        "operationId": "commentsDistribution",
+        "operationId": "familyDistribution",
         "consumes": [
           "application/json"
         ],
@@ -1064,14 +1547,14 @@
         }
       }
     },
-    "/api/v1/comments/distinct/{columnName}": {
+    "/api/v1/family/distinct/{columnName}": {
       "get": {
         "tags": [
-          "comments"
+          "family"
         ],
         "summary": "Get first one from filtered data",
         "description": "",
-        "operationId": "commentsDistinct",
+        "operationId": "familyDistinct",
         "consumes": [
           "application/json"
         ],
@@ -1128,14 +1611,14 @@
         }
       }
     },
-    "/api/v1/comments/aggregate/{columnName}": {
+    "/api/v1/family/aggregate/{columnName}": {
       "get": {
         "tags": [
-          "comments"
+          "family"
         ],
         "summary": "Get first one from filtered data",
         "description": "",
-        "operationId": "commentsAggregate",
+        "operationId": "familyAggregate",
         "consumes": [
           "application/json"
         ],
@@ -1198,7 +1681,1998 @@
           "200": {
             "description": "successful operation",
             "schema": {
-              "$ref": "#/definitions/comments"
+              "$ref": "#/definitions/family"
+            }
+          },
+          "405": {
+            "description": "Invalid input"
+          }
+        }
+      }
+    },
+    "/api/v1/familyitem/belongs/family": {
+      "get": {
+        "tags": [
+          "familyitemBelongsTofamily"
+        ],
+        "summary": "Get familyitem list with family parent",
+        "description": "",
+        "operationId": "familyitemWithParent",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "where",
+            "type": "String",
+            "description": "Where expression"
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "description": "Page size limit",
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "in": "query",
+            "name": "offset",
+            "description": "Pagination offset",
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "in": "query",
+            "name": "sort",
+            "description": "Sort parameter",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "object"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/familyitem/belongs/familyrole": {
+      "get": {
+        "tags": [
+          "familyitemBelongsTofamilyrole"
+        ],
+        "summary": "Get familyitem list with familyrole parent",
+        "description": "",
+        "operationId": "familyitemWithParent",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "where",
+            "type": "String",
+            "description": "Where expression"
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "description": "Page size limit",
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "in": "query",
+            "name": "offset",
+            "description": "Pagination offset",
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "in": "query",
+            "name": "sort",
+            "description": "Sort parameter",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "object"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/familyitem/belongs/person": {
+      "get": {
+        "tags": [
+          "familyitemBelongsToperson"
+        ],
+        "summary": "Get familyitem list with person parent",
+        "description": "",
+        "operationId": "familyitemWithParent",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "where",
+            "type": "String",
+            "description": "Where expression"
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "description": "Page size limit",
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "in": "query",
+            "name": "offset",
+            "description": "Pagination offset",
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "in": "query",
+            "name": "sort",
+            "description": "Sort parameter",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "object"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/familyitem": {
+      "post": {
+        "tags": [
+          "familyitem"
+        ],
+        "summary": "Add a new familyitem",
+        "description": "",
+        "operationId": "addfamilyitem",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "familyitem object that needs to add",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/familyitem"
+            }
+          }
+        ],
+        "responses": {
+          "405": {
+            "description": "Invalid input"
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "familyitem"
+        ],
+        "summary": "Get list",
+        "description": "",
+        "operationId": "getfamilyitem",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "fields",
+            "type": "String",
+            "description": "Comma seperated fields from the model"
+          },
+          {
+            "in": "query",
+            "name": "where",
+            "type": "String",
+            "description": "Where expression"
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "description": "Page size limit",
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "in": "query",
+            "name": "offset",
+            "description": "Pagination offset",
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "in": "query",
+            "name": "sort",
+            "description": "Comma seperated sort fields",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "405": {
+            "description": "Invalid input"
+          }
+        }
+      }
+    },
+    "/api/v1/familyitem/{familyitemId}": {
+      "get": {
+        "tags": [
+          "familyitem"
+        ],
+        "summary": "Find familyitem by ID",
+        "description": "Returns a single familyitem",
+        "operationId": "getfamilyitemById",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "familyitemId",
+            "in": "path",
+            "description": "ID of familyitem to return",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/familyitem"
+            }
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "familyitem not found"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "familyitem"
+        ],
+        "summary": "Updates a familyitem",
+        "description": "",
+        "operationId": "updatefamilyitem",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "familyitemId",
+            "in": "path",
+            "description": "ID of familyitem to return",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "description": "familyitem object that needs to be added to the store",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/familyitem"
+            }
+          }
+        ],
+        "responses": {
+          "405": {
+            "description": "Invalid input"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "familyitem"
+        ],
+        "summary": "Deletes a familyitem",
+        "description": "",
+        "operationId": "deletefamilyitem",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "familyitemId",
+            "in": "path",
+            "description": "ID of familyitem to return",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "familyitem not found"
+          }
+        }
+      }
+    },
+    "/api/v1/familyitem/bulk": {
+      "post": {
+        "tags": [
+          "familyitem"
+        ],
+        "summary": "Bulk familyitem insert",
+        "description": "",
+        "operationId": "bulkfamilyitemInsert",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "familyitem objects",
+            "required": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/familyitem"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "405": {
+            "description": "Invalid input"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "familyitem"
+        ],
+        "summary": "Updates a familyitem",
+        "description": "",
+        "operationId": "updatefamilyitem",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "familyitem objects with id",
+            "required": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/familyitem"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "405": {
+            "description": "Invalid input"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "familyitem"
+        ],
+        "summary": "Deletes a familyitem",
+        "description": "",
+        "operationId": "deletefamilyitem",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "familyitem objects contains id",
+            "required": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/familyitem"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "familyitem not found"
+          }
+        }
+      }
+    },
+    "/api/v1/familyitem/findOne": {
+      "get": {
+        "tags": [
+          "familyitem"
+        ],
+        "summary": "Get first one from filtered data",
+        "description": "",
+        "operationId": "findOnefamilyitem",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "fields",
+            "type": "String",
+            "description": "Comma seperated fields from the model"
+          },
+          {
+            "in": "query",
+            "name": "where",
+            "type": "String",
+            "description": "Where expression"
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "description": "Page size limit",
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "in": "query",
+            "name": "offset",
+            "description": "Pagination offset",
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "in": "query",
+            "name": "sort",
+            "description": "Comma seperated sort fieldst",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/familyitem"
+            }
+          },
+          "405": {
+            "description": "Invalid input"
+          }
+        }
+      }
+    },
+    "/api/v1/familyitem/{familyitemId}/exists": {
+      "get": {
+        "tags": [
+          "familyitem"
+        ],
+        "summary": "Check familyitem with provided ID exists",
+        "description": "Returns a single familyitem",
+        "operationId": "checkfamilyitemExists",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "familyitemId",
+            "in": "path",
+            "description": "ID of familyitem",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/familyitem/count": {
+      "get": {
+        "tags": [
+          "familyitem"
+        ],
+        "summary": "Get familyitem count",
+        "operationId": "getfamilyitemCount",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "where",
+            "type": "String",
+            "description": "Where expression"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "405": {
+            "description": "Invalid input"
+          }
+        }
+      }
+    },
+    "/api/v1/familyitem/groupby/{columnName}": {
+      "get": {
+        "tags": [
+          "familyitem"
+        ],
+        "summary": "Group by column",
+        "description": "",
+        "operationId": "familyitemGroupByColumn",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "columnName",
+            "type": "String",
+            "description": "Column name"
+          },
+          {
+            "in": "query",
+            "name": "where",
+            "type": "String",
+            "description": "Where expression"
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "description": "Page size limit",
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "in": "query",
+            "name": "offset",
+            "description": "Pagination offset",
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "in": "query",
+            "name": "sort",
+            "description": "Comma seperated sort fieldst",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/familyitem"
+            }
+          },
+          "405": {
+            "description": "Invalid input"
+          }
+        }
+      }
+    },
+    "/api/v1/familyitem/distribution/{columnName}": {
+      "get": {
+        "tags": [
+          "familyitem"
+        ],
+        "summary": "",
+        "description": "",
+        "operationId": "familyitemDistribution",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "columnName",
+            "type": "String",
+            "description": "Column name"
+          },
+          {
+            "in": "query",
+            "name": "min",
+            "description": "min value",
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "in": "query",
+            "name": "max",
+            "description": "max value",
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "in": "query",
+            "name": "step",
+            "description": "step value",
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "in": "query",
+            "name": "steps",
+            "description": "steps value",
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "in": "query",
+            "name": "func",
+            "description": "comma separated aggregation functions",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "object"
+              }
+            }
+          },
+          "405": {
+            "description": "Invalid input"
+          }
+        }
+      }
+    },
+    "/api/v1/familyitem/distinct/{columnName}": {
+      "get": {
+        "tags": [
+          "familyitem"
+        ],
+        "summary": "Get first one from filtered data",
+        "description": "",
+        "operationId": "familyitemDistinct",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "columnName",
+            "type": "String",
+            "description": "Column name"
+          },
+          {
+            "in": "query",
+            "name": "where",
+            "type": "String",
+            "description": "Where expression"
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "description": "Page size limit",
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "in": "query",
+            "name": "offset",
+            "description": "Pagination offset",
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "in": "query",
+            "name": "sort",
+            "description": "Comma seperated sort fieldst",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "object"
+              }
+            }
+          },
+          "405": {
+            "description": "Invalid input"
+          }
+        }
+      }
+    },
+    "/api/v1/familyitem/aggregate/{columnName}": {
+      "get": {
+        "tags": [
+          "familyitem"
+        ],
+        "summary": "Get first one from filtered data",
+        "description": "",
+        "operationId": "familyitemAggregate",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "columnName",
+            "type": "String",
+            "description": "Column name"
+          },
+          {
+            "in": "path",
+            "name": "fields",
+            "type": "String",
+            "description": "Column name"
+          },
+          {
+            "in": "path",
+            "name": "func",
+            "type": "String",
+            "description": "Comma seperated aggregate functions"
+          },
+          {
+            "in": "query",
+            "name": "having",
+            "type": "String",
+            "description": "Having expression"
+          },
+          {
+            "in": "query",
+            "name": "fields",
+            "type": "String",
+            "description": "Comma seperated fields from the model"
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "description": "Page size limit",
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "in": "query",
+            "name": "offset",
+            "description": "Pagination offset",
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "in": "query",
+            "name": "sort",
+            "description": "Comma seperated sort fields",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/familyitem"
+            }
+          },
+          "405": {
+            "description": "Invalid input"
+          }
+        }
+      }
+    },
+    "/api/v1/familyrole/has/familyitem": {
+      "get": {
+        "tags": [
+          "familyroleHasManyfamilyitem"
+        ],
+        "summary": "Get familyrole list with familyitem children",
+        "description": "",
+        "operationId": "familyroleHasManyfamilyitemList",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "fields",
+            "type": "String",
+            "description": "Comma seperated fields of model"
+          },
+          {
+            "in": "query",
+            "name": "where",
+            "type": "String",
+            "description": "Where expression"
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "description": "page size limit",
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "in": "query",
+            "name": "offset",
+            "description": "pagination offset",
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "in": "query",
+            "name": "sort",
+            "description": "sort parameter",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "object"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/familyrole/{familyroleId}/familyitem": {
+      "get": {
+        "tags": [
+          "familyroleHasManyfamilyitem"
+        ],
+        "summary": "Find familyitem list by parent familyrole id",
+        "description": "Returns a single familyrole",
+        "operationId": "getfamilyitemByfamilyroleId",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "familyroleId",
+            "in": "path",
+            "description": "ID of familyrole to return",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "in": "query",
+            "name": "fields",
+            "type": "String",
+            "description": "Comma seperated fields of model"
+          },
+          {
+            "in": "query",
+            "name": "where",
+            "type": "String",
+            "description": "Where expression"
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "description": "page size limit",
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "in": "query",
+            "name": "offset",
+            "description": "pagination offset",
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "in": "query",
+            "name": "sort",
+            "description": "sort parameter",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": "object"
+            }
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "familyrole not found"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "familyroleHasManyfamilyitem"
+        ],
+        "summary": "Insert familyitem under a parent familyrole",
+        "description": "Returns a single familyrole",
+        "operationId": "insertfamilyitemByfamilyroleId",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "familyitem object to insert",
+            "required": true,
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "familyroleId",
+            "in": "path",
+            "description": "ID of familyrole to return",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/familyrole/{familyroleId}/familyitem/{familyitemId}": {
+      "get": {
+        "tags": [
+          "familyroleHasManyfamilyitem"
+        ],
+        "summary": "Get by familyitem id parent familyrole id",
+        "description": "Returns a single familyrole",
+        "operationId": "getfamilyitemByIdAndfamilyroleId",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "familyroleId",
+            "in": "path",
+            "description": "ID of parent familyrole",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "familyitemId",
+            "in": "path",
+            "description": "ID of familyitem",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": "object"
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "familyroleHasManyfamilyitem"
+        ],
+        "summary": "Delete by familyitem id parent familyrole id",
+        "description": "Returns a single familyrole",
+        "operationId": "deletefamilyitemByIdAndfamilyroleId",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "familyroleId",
+            "in": "path",
+            "description": "ID of parent familyrole",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "familyitemId",
+            "in": "path",
+            "description": "ID of cfamilyitem",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "familyroleHasManyfamilyitem"
+        ],
+        "summary": "Update familyitem under a parent familyrole",
+        "description": "Returns a single familyrole",
+        "operationId": "updatefamilyitemByIdAndfamilyroleId",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "familyitem object to insert",
+            "required": true,
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "familyroleId",
+            "in": "path",
+            "description": "ID of familyrole to return",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "familyitemId",
+            "in": "path",
+            "description": "ID of familyitem",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/familyrole/{familyroleId}/familyitem/{familyitemId}/exists": {
+      "get": {
+        "tags": [
+          "familyroleHasManyfamilyitem"
+        ],
+        "summary": "Check row exists by familyitem id and parent familyrole id",
+        "description": "",
+        "operationId": "existsfamilyitemByIdAndfamilyroleId",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "familyroleId",
+            "in": "path",
+            "description": "ID of parent familyrole",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "familyitemId",
+            "in": "path",
+            "description": "ID of familyitem",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/familyrole/{familyroleId}/familyitem/findOne": {
+      "get": {
+        "tags": [
+          "familyroleHasManyfamilyitem"
+        ],
+        "summary": "Find one familyitem by parent familyrole id and filters",
+        "description": "",
+        "operationId": "findOnefamilyitemByfamilyroleId",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "familyroleId",
+            "in": "path",
+            "description": "ID of parent familyrole",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "in": "query",
+            "name": "fields",
+            "type": "String",
+            "description": "Comma seperated fields of model"
+          },
+          {
+            "in": "query",
+            "name": "where",
+            "type": "String",
+            "description": "Where expression"
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "description": "page size limit",
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "in": "query",
+            "name": "offset",
+            "description": "pagination offset",
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "in": "query",
+            "name": "sort",
+            "description": "sort parameter",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/familyrole/{familyroleId}/familyitem/count": {
+      "get": {
+        "tags": [
+          "familyroleHasManyfamilyitem"
+        ],
+        "summary": "Get familyitem count by parent id and filter",
+        "description": "",
+        "operationId": "getCountWithinfamilyroleId",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "familyroleId",
+            "in": "path",
+            "description": "ID of parent familyrole",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "in": "query",
+            "name": "where",
+            "type": "String",
+            "description": "Where expression"
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "description": "page size limit",
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "in": "query",
+            "name": "offset",
+            "description": "pagination offset",
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "in": "query",
+            "name": "sort",
+            "description": "sort parameter",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/familyrole": {
+      "post": {
+        "tags": [
+          "familyrole"
+        ],
+        "summary": "Add a new familyrole",
+        "description": "",
+        "operationId": "addfamilyrole",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "familyrole object that needs to add",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/familyrole"
+            }
+          }
+        ],
+        "responses": {
+          "405": {
+            "description": "Invalid input"
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "familyrole"
+        ],
+        "summary": "Get list",
+        "description": "",
+        "operationId": "getfamilyrole",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "fields",
+            "type": "String",
+            "description": "Comma seperated fields from the model"
+          },
+          {
+            "in": "query",
+            "name": "where",
+            "type": "String",
+            "description": "Where expression"
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "description": "Page size limit",
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "in": "query",
+            "name": "offset",
+            "description": "Pagination offset",
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "in": "query",
+            "name": "sort",
+            "description": "Comma seperated sort fields",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "405": {
+            "description": "Invalid input"
+          }
+        }
+      }
+    },
+    "/api/v1/familyrole/{familyroleId}": {
+      "get": {
+        "tags": [
+          "familyrole"
+        ],
+        "summary": "Find familyrole by ID",
+        "description": "Returns a single familyrole",
+        "operationId": "getfamilyroleById",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "familyroleId",
+            "in": "path",
+            "description": "ID of familyrole to return",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/familyrole"
+            }
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "familyrole not found"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "familyrole"
+        ],
+        "summary": "Updates a familyrole",
+        "description": "",
+        "operationId": "updatefamilyrole",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "familyroleId",
+            "in": "path",
+            "description": "ID of familyrole to return",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "description": "familyrole object that needs to be added to the store",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/familyrole"
+            }
+          }
+        ],
+        "responses": {
+          "405": {
+            "description": "Invalid input"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "familyrole"
+        ],
+        "summary": "Deletes a familyrole",
+        "description": "",
+        "operationId": "deletefamilyrole",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "familyroleId",
+            "in": "path",
+            "description": "ID of familyrole to return",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "familyrole not found"
+          }
+        }
+      }
+    },
+    "/api/v1/familyrole/bulk": {
+      "post": {
+        "tags": [
+          "familyrole"
+        ],
+        "summary": "Bulk familyrole insert",
+        "description": "",
+        "operationId": "bulkfamilyroleInsert",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "familyrole objects",
+            "required": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/familyrole"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "405": {
+            "description": "Invalid input"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "familyrole"
+        ],
+        "summary": "Updates a familyrole",
+        "description": "",
+        "operationId": "updatefamilyrole",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "familyrole objects with id",
+            "required": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/familyrole"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "405": {
+            "description": "Invalid input"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "familyrole"
+        ],
+        "summary": "Deletes a familyrole",
+        "description": "",
+        "operationId": "deletefamilyrole",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "familyrole objects contains id",
+            "required": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/familyrole"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "familyrole not found"
+          }
+        }
+      }
+    },
+    "/api/v1/familyrole/findOne": {
+      "get": {
+        "tags": [
+          "familyrole"
+        ],
+        "summary": "Get first one from filtered data",
+        "description": "",
+        "operationId": "findOnefamilyrole",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "fields",
+            "type": "String",
+            "description": "Comma seperated fields from the model"
+          },
+          {
+            "in": "query",
+            "name": "where",
+            "type": "String",
+            "description": "Where expression"
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "description": "Page size limit",
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "in": "query",
+            "name": "offset",
+            "description": "Pagination offset",
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "in": "query",
+            "name": "sort",
+            "description": "Comma seperated sort fieldst",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/familyrole"
+            }
+          },
+          "405": {
+            "description": "Invalid input"
+          }
+        }
+      }
+    },
+    "/api/v1/familyrole/{familyroleId}/exists": {
+      "get": {
+        "tags": [
+          "familyrole"
+        ],
+        "summary": "Check familyrole with provided ID exists",
+        "description": "Returns a single familyrole",
+        "operationId": "checkfamilyroleExists",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "familyroleId",
+            "in": "path",
+            "description": "ID of familyrole",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/familyrole/count": {
+      "get": {
+        "tags": [
+          "familyrole"
+        ],
+        "summary": "Get familyrole count",
+        "operationId": "getfamilyroleCount",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "where",
+            "type": "String",
+            "description": "Where expression"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "405": {
+            "description": "Invalid input"
+          }
+        }
+      }
+    },
+    "/api/v1/familyrole/groupby/{columnName}": {
+      "get": {
+        "tags": [
+          "familyrole"
+        ],
+        "summary": "Group by column",
+        "description": "",
+        "operationId": "familyroleGroupByColumn",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "columnName",
+            "type": "String",
+            "description": "Column name"
+          },
+          {
+            "in": "query",
+            "name": "where",
+            "type": "String",
+            "description": "Where expression"
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "description": "Page size limit",
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "in": "query",
+            "name": "offset",
+            "description": "Pagination offset",
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "in": "query",
+            "name": "sort",
+            "description": "Comma seperated sort fieldst",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/familyrole"
+            }
+          },
+          "405": {
+            "description": "Invalid input"
+          }
+        }
+      }
+    },
+    "/api/v1/familyrole/distribution/{columnName}": {
+      "get": {
+        "tags": [
+          "familyrole"
+        ],
+        "summary": "",
+        "description": "",
+        "operationId": "familyroleDistribution",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "columnName",
+            "type": "String",
+            "description": "Column name"
+          },
+          {
+            "in": "query",
+            "name": "min",
+            "description": "min value",
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "in": "query",
+            "name": "max",
+            "description": "max value",
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "in": "query",
+            "name": "step",
+            "description": "step value",
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "in": "query",
+            "name": "steps",
+            "description": "steps value",
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "in": "query",
+            "name": "func",
+            "description": "comma separated aggregation functions",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "object"
+              }
+            }
+          },
+          "405": {
+            "description": "Invalid input"
+          }
+        }
+      }
+    },
+    "/api/v1/familyrole/distinct/{columnName}": {
+      "get": {
+        "tags": [
+          "familyrole"
+        ],
+        "summary": "Get first one from filtered data",
+        "description": "",
+        "operationId": "familyroleDistinct",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "columnName",
+            "type": "String",
+            "description": "Column name"
+          },
+          {
+            "in": "query",
+            "name": "where",
+            "type": "String",
+            "description": "Where expression"
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "description": "Page size limit",
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "in": "query",
+            "name": "offset",
+            "description": "Pagination offset",
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "in": "query",
+            "name": "sort",
+            "description": "Comma seperated sort fieldst",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "object"
+              }
+            }
+          },
+          "405": {
+            "description": "Invalid input"
+          }
+        }
+      }
+    },
+    "/api/v1/familyrole/aggregate/{columnName}": {
+      "get": {
+        "tags": [
+          "familyrole"
+        ],
+        "summary": "Get first one from filtered data",
+        "description": "",
+        "operationId": "familyroleAggregate",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "columnName",
+            "type": "String",
+            "description": "Column name"
+          },
+          {
+            "in": "path",
+            "name": "fields",
+            "type": "String",
+            "description": "Column name"
+          },
+          {
+            "in": "path",
+            "name": "func",
+            "type": "String",
+            "description": "Comma seperated aggregate functions"
+          },
+          {
+            "in": "query",
+            "name": "having",
+            "type": "String",
+            "description": "Having expression"
+          },
+          {
+            "in": "query",
+            "name": "fields",
+            "type": "String",
+            "description": "Comma seperated fields from the model"
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "description": "Page size limit",
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "in": "query",
+            "name": "offset",
+            "description": "Pagination offset",
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "in": "query",
+            "name": "sort",
+            "description": "Comma seperated sort fields",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/familyrole"
             }
           },
           "405": {
@@ -1259,14 +3733,14 @@
         }
       }
     },
-    "/api/v1/person/has/comments": {
+    "/api/v1/person/has/family": {
       "get": {
         "tags": [
-          "personHasManycomments"
+          "personHasManyfamily"
         ],
-        "summary": "Get person list with comments children",
+        "summary": "Get person list with family children",
         "description": "",
-        "operationId": "personHasManycommentsList",
+        "operationId": "personHasManyfamilyList",
         "produces": [
           "application/json"
         ],
@@ -1317,14 +3791,14 @@
         }
       }
     },
-    "/api/v1/person/{personId}/comments": {
+    "/api/v1/person/{personId}/family": {
       "get": {
         "tags": [
-          "personHasManycomments"
+          "personHasManyfamily"
         ],
-        "summary": "Find comments list by parent person id",
+        "summary": "Find family list by parent person id",
         "description": "Returns a single person",
-        "operationId": "getcommentsBypersonId",
+        "operationId": "getfamilyBypersonId",
         "produces": [
           "application/json"
         ],
@@ -1388,11 +3862,11 @@
       },
       "post": {
         "tags": [
-          "personHasManycomments"
+          "personHasManyfamily"
         ],
-        "summary": "Insert comments under a parent person",
+        "summary": "Insert family under a parent person",
         "description": "Returns a single person",
-        "operationId": "insertcommentsBypersonId",
+        "operationId": "insertfamilyBypersonId",
         "consumes": [
           "application/json"
         ],
@@ -1403,7 +3877,7 @@
           {
             "in": "body",
             "name": "body",
-            "description": "comments object to insert",
+            "description": "family object to insert",
             "required": true,
             "schema": {
               "type": "object"
@@ -1428,14 +3902,14 @@
         }
       }
     },
-    "/api/v1/person/{personId}/comments/{commentsId}": {
+    "/api/v1/person/{personId}/family/{familyId}": {
       "get": {
         "tags": [
-          "personHasManycomments"
+          "personHasManyfamily"
         ],
-        "summary": "Get by comments id parent person id",
+        "summary": "Get by family id parent person id",
         "description": "Returns a single person",
-        "operationId": "getcommentsByIdAndpersonId",
+        "operationId": "getfamilyByIdAndpersonId",
         "produces": [
           "application/json"
         ],
@@ -1449,9 +3923,9 @@
             "format": "int64"
           },
           {
-            "name": "commentsId",
+            "name": "familyId",
             "in": "path",
-            "description": "ID of comments",
+            "description": "ID of family",
             "required": true,
             "type": "integer",
             "format": "int64"
@@ -1469,11 +3943,11 @@
       },
       "delete": {
         "tags": [
-          "personHasManycomments"
+          "personHasManyfamily"
         ],
-        "summary": "Delete by comments id parent person id",
+        "summary": "Delete by family id parent person id",
         "description": "Returns a single person",
-        "operationId": "deletecommentsByIdAndpersonId",
+        "operationId": "deletefamilyByIdAndpersonId",
         "produces": [
           "application/json"
         ],
@@ -1487,9 +3961,9 @@
             "format": "int64"
           },
           {
-            "name": "commentsId",
+            "name": "familyId",
             "in": "path",
-            "description": "ID of ccomments",
+            "description": "ID of cfamily",
             "required": true,
             "type": "integer",
             "format": "int64"
@@ -1503,11 +3977,11 @@
       },
       "put": {
         "tags": [
-          "personHasManycomments"
+          "personHasManyfamily"
         ],
-        "summary": "Update comments under a parent person",
+        "summary": "Update family under a parent person",
         "description": "Returns a single person",
-        "operationId": "updatecommentsByIdAndpersonId",
+        "operationId": "updatefamilyByIdAndpersonId",
         "consumes": [
           "application/json"
         ],
@@ -1518,7 +3992,7 @@
           {
             "in": "body",
             "name": "body",
-            "description": "comments object to insert",
+            "description": "family object to insert",
             "required": true,
             "schema": {
               "type": "object"
@@ -1533,9 +4007,9 @@
             "format": "int64"
           },
           {
-            "name": "commentsId",
+            "name": "familyId",
             "in": "path",
-            "description": "ID of comments",
+            "description": "ID of family",
             "required": true,
             "type": "integer",
             "format": "int64"
@@ -1551,14 +4025,14 @@
         }
       }
     },
-    "/api/v1/person/{personId}/comments/{commentsId}/exists": {
+    "/api/v1/person/{personId}/family/{familyId}/exists": {
       "get": {
         "tags": [
-          "personHasManycomments"
+          "personHasManyfamily"
         ],
-        "summary": "Check row exists by comments id and parent person id",
+        "summary": "Check row exists by family id and parent person id",
         "description": "",
-        "operationId": "existscommentsByIdAndpersonId",
+        "operationId": "existsfamilyByIdAndpersonId",
         "produces": [
           "application/json"
         ],
@@ -1572,9 +4046,9 @@
             "format": "int64"
           },
           {
-            "name": "commentsId",
+            "name": "familyId",
             "in": "path",
-            "description": "ID of comments",
+            "description": "ID of family",
             "required": true,
             "type": "integer",
             "format": "int64"
@@ -1590,14 +4064,14 @@
         }
       }
     },
-    "/api/v1/person/{personId}/comments/findOne": {
+    "/api/v1/person/{personId}/family/findOne": {
       "get": {
         "tags": [
-          "personHasManycomments"
+          "personHasManyfamily"
         ],
-        "summary": "Find one comments by parent person id and filters",
+        "summary": "Find one family by parent person id and filters",
         "description": "",
-        "operationId": "findOnecommentsBypersonId",
+        "operationId": "findOnefamilyBypersonId",
         "produces": [
           "application/json"
         ],
@@ -1653,12 +4127,463 @@
         }
       }
     },
-    "/api/v1/person/{personId}/comments/count": {
+    "/api/v1/person/{personId}/family/count": {
       "get": {
         "tags": [
-          "personHasManycomments"
+          "personHasManyfamily"
         ],
-        "summary": "Get comments count by parent id and filter",
+        "summary": "Get family count by parent id and filter",
+        "description": "",
+        "operationId": "getCountWithinpersonId",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "personId",
+            "in": "path",
+            "description": "ID of parent person",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "in": "query",
+            "name": "where",
+            "type": "String",
+            "description": "Where expression"
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "description": "page size limit",
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "in": "query",
+            "name": "offset",
+            "description": "pagination offset",
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "in": "query",
+            "name": "sort",
+            "description": "sort parameter",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/person/has/familyitem": {
+      "get": {
+        "tags": [
+          "personHasManyfamilyitem"
+        ],
+        "summary": "Get person list with familyitem children",
+        "description": "",
+        "operationId": "personHasManyfamilyitemList",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "fields",
+            "type": "String",
+            "description": "Comma seperated fields of model"
+          },
+          {
+            "in": "query",
+            "name": "where",
+            "type": "String",
+            "description": "Where expression"
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "description": "page size limit",
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "in": "query",
+            "name": "offset",
+            "description": "pagination offset",
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "in": "query",
+            "name": "sort",
+            "description": "sort parameter",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "object"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/person/{personId}/familyitem": {
+      "get": {
+        "tags": [
+          "personHasManyfamilyitem"
+        ],
+        "summary": "Find familyitem list by parent person id",
+        "description": "Returns a single person",
+        "operationId": "getfamilyitemBypersonId",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "personId",
+            "in": "path",
+            "description": "ID of person to return",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "in": "query",
+            "name": "fields",
+            "type": "String",
+            "description": "Comma seperated fields of model"
+          },
+          {
+            "in": "query",
+            "name": "where",
+            "type": "String",
+            "description": "Where expression"
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "description": "page size limit",
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "in": "query",
+            "name": "offset",
+            "description": "pagination offset",
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "in": "query",
+            "name": "sort",
+            "description": "sort parameter",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": "object"
+            }
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "person not found"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "personHasManyfamilyitem"
+        ],
+        "summary": "Insert familyitem under a parent person",
+        "description": "Returns a single person",
+        "operationId": "insertfamilyitemBypersonId",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "familyitem object to insert",
+            "required": true,
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "personId",
+            "in": "path",
+            "description": "ID of person to return",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/person/{personId}/familyitem/{familyitemId}": {
+      "get": {
+        "tags": [
+          "personHasManyfamilyitem"
+        ],
+        "summary": "Get by familyitem id parent person id",
+        "description": "Returns a single person",
+        "operationId": "getfamilyitemByIdAndpersonId",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "personId",
+            "in": "path",
+            "description": "ID of parent person",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "familyitemId",
+            "in": "path",
+            "description": "ID of familyitem",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": "object"
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "personHasManyfamilyitem"
+        ],
+        "summary": "Delete by familyitem id parent person id",
+        "description": "Returns a single person",
+        "operationId": "deletefamilyitemByIdAndpersonId",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "personId",
+            "in": "path",
+            "description": "ID of parent person",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "familyitemId",
+            "in": "path",
+            "description": "ID of cfamilyitem",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "personHasManyfamilyitem"
+        ],
+        "summary": "Update familyitem under a parent person",
+        "description": "Returns a single person",
+        "operationId": "updatefamilyitemByIdAndpersonId",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "familyitem object to insert",
+            "required": true,
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "name": "personId",
+            "in": "path",
+            "description": "ID of person to return",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "familyitemId",
+            "in": "path",
+            "description": "ID of familyitem",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/person/{personId}/familyitem/{familyitemId}/exists": {
+      "get": {
+        "tags": [
+          "personHasManyfamilyitem"
+        ],
+        "summary": "Check row exists by familyitem id and parent person id",
+        "description": "",
+        "operationId": "existsfamilyitemByIdAndpersonId",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "personId",
+            "in": "path",
+            "description": "ID of parent person",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "familyitemId",
+            "in": "path",
+            "description": "ID of familyitem",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/person/{personId}/familyitem/findOne": {
+      "get": {
+        "tags": [
+          "personHasManyfamilyitem"
+        ],
+        "summary": "Find one familyitem by parent person id and filters",
+        "description": "",
+        "operationId": "findOnefamilyitemBypersonId",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "personId",
+            "in": "path",
+            "description": "ID of parent person",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "in": "query",
+            "name": "fields",
+            "type": "String",
+            "description": "Comma seperated fields of model"
+          },
+          {
+            "in": "query",
+            "name": "where",
+            "type": "String",
+            "description": "Where expression"
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "description": "page size limit",
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "in": "query",
+            "name": "offset",
+            "description": "pagination offset",
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "in": "query",
+            "name": "sort",
+            "description": "sort parameter",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/person/{personId}/familyitem/count": {
+      "get": {
+        "tags": [
+          "personHasManyfamilyitem"
+        ],
+        "summary": "Get familyitem count by parent id and filter",
         "description": "",
         "operationId": "getCountWithinpersonId",
         "produces": [
@@ -2464,7 +5389,7 @@
         }
       ]
     },
-    "comments": {
+    "family": {
       "type": "object",
       "properties": {
         "id": {
@@ -2482,6 +5407,56 @@
           "type": "string"
         },
         "person_id": {
+          "type": "integer"
+        }
+      }
+    },
+    "familyitem": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "nullable": false,
+          "readOnly": true
+        },
+        "name": {
+          "type": "string"
+        },
+        "created_at": {
+          "type": "string"
+        },
+        "updated_at": {
+          "type": "string"
+        },
+        "family_id": {
+          "type": "integer"
+        },
+        "person_id": {
+          "type": "integer"
+        },
+        "familyrole_id": {
+          "type": "integer"
+        }
+      }
+    },
+    "familyrole": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "nullable": false,
+          "readOnly": true
+        },
+        "name": {
+          "type": "string"
+        },
+        "created_at": {
+          "type": "string"
+        },
+        "updated_at": {
+          "type": "string"
+        },
+        "sort": {
           "type": "integer"
         }
       }
@@ -2505,6 +5480,39 @@
         },
         "user_id": {
           "type": "integer"
+        },
+        "openid": {
+          "type": "string"
+        },
+        "session_key": {
+          "type": "string"
+        },
+        "mobile_phone": {
+          "type": "string"
+        },
+        "avatarUrl": {
+          "type": "string"
+        },
+        "city": {
+          "type": "string"
+        },
+        "country": {
+          "type": "string"
+        },
+        "gender": {
+          "type": "integer"
+        },
+        "language": {
+          "type": "string"
+        },
+        "nickName": {
+          "type": "string"
+        },
+        "province": {
+          "type": "string"
+        },
+        "unionId": {
+          "type": "string"
         }
       }
     }
