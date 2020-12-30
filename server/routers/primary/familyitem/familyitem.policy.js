@@ -112,20 +112,6 @@ module.exports.permissions = {
       guest: true
     }
   },
-  '/api/v1/familyitem/belongs/:parents': {
-    get: {
-      admin: true,
-      user: true,
-      guest: true
-    }
-  },
-  '/api/v1/familyitem/belongs/:parents': {
-    get: {
-      admin: true,
-      user: true,
-      guest: true
-    }
-  },
 
 
 };

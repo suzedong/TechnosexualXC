@@ -163,7 +163,13 @@ module.exports.permissions = {
 
 
   /* Belongs to routes and permissions */
-
+  '/api/v1/family/belongs/:parents': {
+    get: {
+      admin: true,
+      user: true,
+      guest: true
+    }
+  },
 
 
 };

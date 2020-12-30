@@ -103,6 +103,64 @@ module.exports.permissions = {
 
   /* Has many routes and permissions */
 
+  '/api/v1/familyrole/has/familyitem': {
+    get: {
+      admin: true,
+      user: true,
+      guest: true
+    }
+  },
+  '/api/v1/familyrole/:parentId/familyitem': {
+    get: {
+      admin: true,
+      user: true,
+      guest: true
+    },
+    post: {
+      admin: true,
+      user: true,
+      guest: true
+    }
+  },
+  '/api/v1/familyrole/:parentId/familyitem/findOne': {
+    get: {
+      admin: true,
+      user: true,
+      guest: true
+    }
+  },
+  '/api/v1/familyrole/:parentId/familyitem/count': {
+    get: {
+      admin: true,
+      user: true,
+      guest: true
+    }
+  },
+  '/api/v1/familyrole/:parentId/familyitem/:id': {
+    get: {
+      admin: true,
+      user: true,
+      guest: true
+    },
+    put: {
+      admin: true,
+      user: true,
+      guest: true
+    },
+    delete: {
+      admin: true,
+      user: true,
+      guest: true
+    }
+  },
+  '/api/v1/familyrole/:parentId/familyitem/:id/exists': {
+    get: {
+      admin: true,
+      user: true,
+      guest: true
+    }
+  },
+
 
   /* Belongs to routes and permissions */
 
