@@ -184,6 +184,17 @@ module.exports = {
   ],
   pks: [],
   hasMany: [{
+    "constraintName": "familyitem_person_id_foreign",
+    "tableName": "familyitem",
+    "columnName": "person_id",
+    "positionInUniqueConstraint": 1,
+    "referencedTableName": "person",
+    "referencedColumnName": "id",
+    "matchOption": "NONE",
+    "updateRule": "CASCADE",
+    "deleteRule": "CASCADE",
+    "tableSchema": "txc"
+  }, {
     "constraintName": "family_person_id_foreign",
     "tableName": "family",
     "columnName": "person_id",
@@ -195,6 +206,17 @@ module.exports = {
     "deleteRule": "CASCADE",
     "tableSchema": "txc"
   }],
-  belongsTo: [],
+  belongsTo: [{
+    "constraintName": "person_user_id_foreign",
+    "tableName": "person",
+    "columnName": "user_id",
+    "positionInUniqueConstraint": 1,
+    "referencedTableName": "users",
+    "referencedColumnName": "id",
+    "matchOption": "NONE",
+    "updateRule": "CASCADE",
+    "deleteRule": "CASCADE",
+    "tableSchema": "txc"
+  }],
   dbType: 'mysql'
 }
