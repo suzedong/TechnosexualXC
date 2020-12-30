@@ -2,55 +2,55 @@ const {
   BaseService
 } = require('xc-core');
 
-class CommentsService extends BaseService {
+class FamilyroleService extends BaseService {
 
   constructor(app) {
     super(app);
-    this.comments = app.$dbs.primary.comments;
+    this.familyrole = app.$dbs.primary.familyrole;
   }
 
   async create(req, res) {
-    let data = await this.comments.insert(req.body);
+    let data = await this.familyrole.insert(req.body);
     return data;
   }
 
   async list(req, res) {
-    let data = await this.comments.list(req.query);
+    let data = await this.familyrole.list(req.query);
     return data;
   }
 
   async read(req, res) {
-    let data = await this.comments.readByPk(req.params.id);
+    let data = await this.familyrole.readByPk(req.params.id);
     return data;
   }
 
   async update(req, res) {
-    let data = await this.comments.updateByPk(req.params.id, req.body);
+    let data = await this.familyrole.updateByPk(req.params.id, req.body);
     return data;
   }
 
   async delete(req, res) {
-    let data = await this.comments.delByPk(req.params.id);
+    let data = await this.familyrole.delByPk(req.params.id);
     return data;
   }
 
   async findOne(req, res) {
-    let data = await this.comments.findOne(req.query);
+    let data = await this.familyrole.findOne(req.query);
     return data;
   }
 
   async count(req, res) {
-    let data = await this.comments.countByPk(req.query);
+    let data = await this.familyrole.countByPk(req.query);
     return data;
   }
 
   async exists(req, res) {
-    let data = await this.comments.exists(req.params.id);
+    let data = await this.familyrole.exists(req.params.id);
     return data;
   }
 
   async groupBy(req, res) {
-    let data = await this.comments.groupBy({
+    let data = await this.familyrole.groupBy({
       ...req.params,
       ...req.query
     });
@@ -58,7 +58,7 @@ class CommentsService extends BaseService {
   }
 
   async aggregate(req, res) {
-    let data = await this.comments.aggregate({
+    let data = await this.familyrole.aggregate({
       ...req.params,
       ...req.query
     });
@@ -66,7 +66,7 @@ class CommentsService extends BaseService {
   }
 
   async distribution(req, res) {
-    let data = await this.comments.distribution({
+    let data = await this.familyrole.distribution({
       ...req.params,
       ...req.query
     });
@@ -74,7 +74,7 @@ class CommentsService extends BaseService {
   }
 
   async distinct(req, res) {
-    let data = await this.comments.distinct({
+    let data = await this.familyrole.distinct({
       ...req.params,
       ...req.query
     });
@@ -82,20 +82,20 @@ class CommentsService extends BaseService {
   }
 
   async createb(req, res) {
-    let data = await this.comments.insertb(req.body);
+    let data = await this.familyrole.insertb(req.body);
     return data;
   }
 
   async updateb(req, res) {
-    let data = await this.comments.updateb(req.body);
+    let data = await this.familyrole.updateb(req.body);
     return data;
   }
 
   async deleteb(req, res) {
-    let data = await this.comments.delb(req.body);
+    let data = await this.familyrole.delb(req.body);
     return data;
   }
 
 }
 
-module.exports = CommentsService;
+module.exports = FamilyroleService;

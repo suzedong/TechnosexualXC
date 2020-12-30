@@ -2,7 +2,7 @@ const {
   BaseModelSql
 } = require('xc-data-mapper');
 
-class comments extends BaseModelSql {
+class familyrole extends BaseModelSql {
 
   constructor({
     dbDriver
@@ -10,7 +10,7 @@ class comments extends BaseModelSql {
 
     super({
       dbDriver,
-      ...require('./comments.meta.js')
+      ...require('./familyrole.meta.js')
     });
 
   }
@@ -18,4 +18,4 @@ class comments extends BaseModelSql {
 }
 
 
-module.exports = comments;
+module.exports = familyrole;
