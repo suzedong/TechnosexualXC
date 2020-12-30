@@ -10,6 +10,7 @@ class LoginService extends BaseService {
     constructor(app) {
         super(app);
         this.person = app.$dbs.primary.person;
+        this.family = app.$dbs.primary.family;
     }
 
     async login(req, res) {
@@ -37,9 +38,20 @@ class LoginService extends BaseService {
         let person = {}
         if (data.openid) {
             req.query.where = '(openid,eq,' + data.openid + ')'
-            req.query.fields = ['id','name','mobile_phone']
-            person = await this.person.findOne(req.query);
-            console.log('findOne:', person)
+            req.query.fields = 'id,name,mobile_phone'
+            // person = await this.person.findOne(req.query);
+            let personList
+            personList = await this.person.hasManyList({
+                ...req.query,
+                childs: `family`
+            })
+            console.log('hasManyList:', personList)
+            if (personList.length > 0) {
+                person = personList[0]
+            } else {
+                return {}
+            }
+
             if (!person.id) {
                 const newPerson = {openid: data.openid, session_key: data.session_key}
                 person = await this.person.insert(newPerson);
@@ -48,13 +60,12 @@ class LoginService extends BaseService {
             } else {
                 const updatePerson = {}
                 updatePerson.session_key = data.session_key
-                person.session_key = data.session_key
                 const r = await this.person.updateByPk(person.id, updatePerson);
                 console.log('updateByPk:', r)
                 data.person = person
             }
         }
-        return {person:person} || {}
+        return data || {}
     }
 
     async getUserInfo(req, res) {

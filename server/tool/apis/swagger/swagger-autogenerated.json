@@ -5436,6 +5436,9 @@
         },
         "familyrole_id": {
           "type": "integer"
+        },
+        "isFamilyCreater": {
+          "type": "integer"
         }
       }
     },
@@ -5457,6 +5460,9 @@
           "type": "string"
         },
         "sort": {
+          "type": "integer"
+        },
+        "type": {
           "type": "integer"
         }
       }

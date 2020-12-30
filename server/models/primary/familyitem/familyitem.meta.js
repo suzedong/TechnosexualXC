@@ -82,6 +82,19 @@ module.exports = {
         msg: []
       },
     },
+    {
+      columnName: 'isFamilyCreater',
+      type: 'integer',
+      dataType: 'int',
+      default: "0",
+      columnDefault: "0",
+      data_type_x_precision: "11",
+      validate: {
+        func: [],
+        args: [],
+        msg: []
+      },
+    },
   ],
   pks: [],
   hasMany: [],

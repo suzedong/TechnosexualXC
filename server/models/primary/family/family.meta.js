@@ -62,7 +62,18 @@ module.exports = {
     },
   ],
   pks: [],
-  hasMany: [],
+  hasMany: [{
+    "constraintName": "familyitem_family_id_foreign",
+    "tableName": "familyitem",
+    "columnName": "family_id",
+    "positionInUniqueConstraint": 1,
+    "referencedTableName": "family",
+    "referencedColumnName": "id",
+    "matchOption": "NONE",
+    "updateRule": "CASCADE",
+    "deleteRule": "CASCADE",
+    "tableSchema": "txc"
+  }],
   belongsTo: [{
     "constraintName": "family_person_id_foreign",
     "tableName": "family",

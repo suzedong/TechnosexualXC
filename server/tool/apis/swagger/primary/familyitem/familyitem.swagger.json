@@ -697,6 +697,9 @@
         },
         "familyrole_id": {
           "type": "integer"
+        },
+        "isFamilyCreater": {
+          "type": "integer"
         }
       }
     }

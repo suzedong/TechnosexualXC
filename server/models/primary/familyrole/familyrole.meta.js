@@ -60,6 +60,17 @@ module.exports = {
         msg: []
       },
     },
+    {
+      columnName: 'type',
+      type: 'integer',
+      dataType: 'int',
+      data_type_x_precision: "11",
+      validate: {
+        func: [],
+        args: [],
+        msg: []
+      },
+    },
   ],
   pks: [],
   hasMany: [{
