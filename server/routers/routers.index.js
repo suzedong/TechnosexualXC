@@ -63,7 +63,7 @@ class Router extends BaseComponent {
     this.router.use(express.static(path.join(__dirname, '../public')));
 
     this.router.use(cors({
-      origin: ['http://localhost:3000'],
+      origin: '*',
       methods: ['POST', 'GET', 'OPTIONS', 'PUT', 'PATCH', 'DELETE', 'HEAD'],
       credentials: true // enable set cookie
     }));

@@ -43,7 +43,7 @@ class LoginService extends BaseService {
             let personList
             personList = await this.person.hasManyList({
                 ...req.query,
-                childs: `family`
+                childs: `family.familyitem`
             })
             console.log('hasManyList:', personList)
             if (personList.length > 0) {
